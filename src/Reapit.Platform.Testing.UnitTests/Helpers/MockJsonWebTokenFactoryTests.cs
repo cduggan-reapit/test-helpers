@@ -78,6 +78,7 @@ public static class JsonWebTokenFactoryTests
             // Read the token (manually)
             var handler = new JsonWebTokenHandler();
             var actual = handler.ReadJsonWebToken(token);
+            
             var actualClaims = actual.Claims.ToDictionary(claim => claim.Type, claim => claim.Value);
             
             // Everything in `claims` should be in the token claim collection.
