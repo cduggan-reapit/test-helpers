@@ -1,0 +1,26 @@
+branches: 
+  - main
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - 
+    - "@semantic-release/changelog"
+    - changelogFile: "changelog.md"
+  -
+    - "@droidsolutions-oss/semantic-release-update-file"
+    - files:
+        - type: xml
+          path:
+            - "src/Reapit.Platform.Common/Reapit.Platform.Common.csproj"
+          replacements:
+            - key: Version
+              value: ${nextRelease.version}
+  -
+    - "@semantic-release/git"
+    - assets:
+      - path: "changelog.md"
+        label: changelog
+      - path: "src/Reapit.Platform.Common/Reapit.Platform.Common.csproj"
+        label: project file
+  -
+    - "@semantic-release/github"
