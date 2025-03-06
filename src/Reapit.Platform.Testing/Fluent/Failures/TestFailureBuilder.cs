@@ -6,32 +6,33 @@ namespace Reapit.Platform.Testing.Fluent.Failures;
 /// <summary>Builder for text failure exceptions.</summary>
 public class TestFailureBuilder
 {
-    /// <summary>Gets an instance of <see cref="TestFailureBuilder"/>.</summary>
-    public static TestFailureBuilder Create() => new();
-
     /// <summary>Gets an instance of <see cref="TestFailureBuilder"/> for the defined context.</summary>
     /// <param name="context">The test context.</param>
     public static TestFailureBuilder CreateForContext(string context) 
         => new TestFailureBuilder().SetContext(context);
     
-    public string Context { get; private set; }
+    /// <summary>The test context.</summary>
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
+    public string? Context { get; private set; }
     
-    public string MessageTemplate { get; private set; }
+    /// <summary>The error message template.</summary>
+    private string? MessageTemplate { get; set; }
     
-    public Exception? InnerException { get; private set; }
+    /// <summary>The inner exception to include in built exceptions.</summary>
+    private Exception? InnerException { get; set; }
 
     /// <summary>The context data collection.</summary>
     /// <remarks>
     /// Context data can be substituted in error message strings using reference in the format <c>{key}</c>.
     /// </remarks>
-    public Dictionary<string, TestFailureContextData> ContextData { get; } = new()
+    private Dictionary<string, TestFailureContextData> ContextData { get; } = new()
     {
         { "null", new TestFailureContextData(null, false) }
     };
 
     /// <summary>Set the name of the context for the current test.</summary>
     /// <param name="context">The name of the context.</param>
-    public TestFailureBuilder SetContext(string context)
+    private TestFailureBuilder SetContext(string context)
     {
         Context = context;
         SetContextData("context", context, false);
@@ -68,11 +69,9 @@ public class TestFailureBuilder
         return this;
     }
     
-    public XunitException Build()
-    {
-        return new XunitException(BuildMessage(), InnerException);
-    }
-    
+    /// <summary>Creates an exception representing the configured test failure.</summary>
+    public XunitException Build() => new(BuildMessage(), InnerException);
+
     /*
      * Private methods
      */
@@ -85,12 +84,12 @@ public class TestFailureBuilder
         var message = MessageTemplate;
         var substitutionKeys = ContextData.Select(cd => $"{{{cd.Key}}}").ToList();
         var iterations = 0;
-        while (substitutionKeys.Any(k => message.Contains(k, StringComparison.OrdinalIgnoreCase)))
+        while (substitutionKeys.Any(k => message is not null && message.Contains(k, StringComparison.OrdinalIgnoreCase)))
         {
             message = ContextData.Aggregate(
                 seed: message, 
                 func: (current, substitute) 
-                    => current.Replace($"{{{substitute.Key}}}", GetStringRepresentation(substitute.Value.Value), StringComparison.OrdinalIgnoreCase));
+                    => current?.Replace($"{{{substitute.Key}}}", GetStringRepresentation(substitute.Value.Value), StringComparison.OrdinalIgnoreCase));
             
             // Safety valve
             if (iterations++ >= 5) break;
@@ -106,14 +105,14 @@ public class TestFailureBuilder
 
         var maxKeyLength = reportable.Max(item => item.Key.Length) + 2;
         foreach (var item in reportable)
-            sb.Append($"{item.Key}:".PadRight(maxKeyLength, ' ')).AppendLine(GetStringRepresentation(item.Value.Value));
+            sb.Append($"{item.Key}:".PadRight(maxKeyLength, ' ')).AppendLine(GetStringRepresentation(item.Value.Value).Replace(Environment.NewLine, $"{Environment.NewLine}{new string(' ', 4)}"));
         
         sb.AppendLine(new string('-', 50));
 
         return sb.ToString();
     }
 
-    private string GetStringRepresentation(object? input)
+    private static string GetStringRepresentation(object? input)
     {
         // We can make this pretty later
         
@@ -128,6 +127,9 @@ public class TestFailureBuilder
         
         if (input.GetType().IsPrimitive) 
             return input.ToString() ?? "<empty>";
+
+        if (input is string str)
+            return str;
 
         return input.Serialize();
     }
