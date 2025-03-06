@@ -55,6 +55,9 @@ public class NumericAssertions<T, TAssertions>
     /// <param name="compareTo">The expected value.</param>
     public AndOperator<TAssertions> Be(T? compareTo)
     {
+        if(Subject is null && compareTo is null)
+            return new AndOperator<TAssertions>((TAssertions)this);
+        
         // If compareTo is null then Subject must be null, otherwise the values must be the same.
         if (compareTo is { } value ? Subject?.CompareTo(value) == 0 : Subject is null)
             return new AndOperator<TAssertions>((TAssertions)this);

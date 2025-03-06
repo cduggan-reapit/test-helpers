@@ -22,7 +22,6 @@ public class NullableNumericAssertions<T, TAssertions>(T? subject)
     where T : struct, IComparable<T>
     where TAssertions : NullableNumericAssertions<T, TAssertions>
 {
-
     /// <summary>Asserts that the subject is not <see langword="null"/>.</summary>
     public AndOperator<TAssertions> HaveValue()
     {
