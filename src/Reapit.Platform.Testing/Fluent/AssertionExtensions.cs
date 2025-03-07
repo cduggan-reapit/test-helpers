@@ -120,9 +120,17 @@ public static class AssertionExtensions
     /// <param name="subject">The subject of the assertions.</param>
     public static DateTimeAssertions Must(this DateTime subject) => new(subject);
     
+    /// <summary>Create the assertions object for a <see cref="DateTimeOffset"/> object.</summary>
+    /// <param name="subject">The subject of the assertions.</param>
+    public static DateTimeOffsetAssertions Must(this DateTimeOffset subject) => new(subject);
+    
     /// <summary>Create the assertions object for a nullable <see cref="DateTime"/> object.</summary>
     /// <param name="subject">The subject of the assertions.</param>
     public static NullableDateTimeAssertions Must(this DateTime? subject) => new(subject);
+    
+    /// <summary>Create the assertions object for a <see cref="DateTimeOffset"/> object.</summary>
+    /// <param name="subject">The subject of the assertions.</param>
+    public static NullableDateTimeOffsetAssertions Must(this DateTimeOffset? subject) => new(subject);
 
     #endregion
 }
