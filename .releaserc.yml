@@ -17,7 +17,7 @@ plugins:
     - assets:
       - path: "changelog.md"
         label: changelog
-      - path: "src/Reapit.Platform.Common/Reapit.Platform.Common.csproj"
+      - path: "src/Reapit.Platform.Testing/Reapit.Platform.Testing.csproj"
         label: project file
   -
     - "@semantic-release/github"
