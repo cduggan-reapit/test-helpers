@@ -2,6 +2,7 @@
 
 public static class NullableDateTimeAssertionsTests
 {
+    private static readonly DateTime? NullDate = null;
     /*
      * NullableDateTimeAssertions is an extension of DateTimeAssertions.  For inherited methods, this class will only
      * test the null case as this cannot be exercised in the DateTimeAssertions class.
@@ -12,8 +13,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().HaveValue();
+            var action = () => NullDate.Must().HaveValue();
             action.Must().Throw();
         }
 
@@ -31,8 +31,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().NotHaveValue();
+            var action = () => NullDate.Must().NotHaveValue();
             action.Must().NotThrow();
         }
 
@@ -50,8 +49,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().BeNull();
+            var action = () => NullDate.Must().BeNull();
             action.Must().NotThrow();
         }
 
@@ -69,8 +67,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().NotBeNull();
+            var action = () => NullDate.Must().NotBeNull();
             action.Must().Throw();
         }
 
@@ -92,17 +89,13 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull_AndComparisonNotNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().Be((DateTime?)DateTime.Now);
+            var action = () => NullDate.Must().Be((DateTime?)DateTime.Now);
             action.Must().Throw<XunitException>();
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNull_AndComparisonNull()
-        {
-            DateTime? subject = null;
-            subject.Must().Be(null);
-        }
+        public void Should_NotFail_WhenSubjectNull_AndComparisonNull() 
+            => NullDate.Must().Be(null);
 
         [Fact]
         public void Should_NotFail_WhenSubjectEqual_ToNullableComparison()
@@ -122,8 +115,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNotEqual_ToNullComparison()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().Be((DateTime?)DateTime.Now);
+            var action = () => NullDate.Must().Be((DateTime?)DateTime.Now);
             action.Must().Throw<XunitException>();
         }
     }
@@ -131,17 +123,13 @@ public static class NullableDateTimeAssertionsTests
     public class NotBe
     {
         [Fact]
-        public void Should_NotFail_WhenSubjectNull_AndComparisonNotNull()
-        {
-            DateTime? subject = null;
-            subject.Must().NotBe((DateTime?)DateTime.Now);
-        }
+        public void Should_NotFail_WhenSubjectNull_AndComparisonNotNull() 
+            => NullDate.Must().NotBe((DateTime?)DateTime.Now);
 
         [Fact]
         public void Should_Fail_WhenSubjectNull_AndComparisonNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().NotBe(null);
+            var action = () => NullDate.Must().NotBe(null);
             action.Must().Throw<XunitException>();
         }
 
@@ -161,11 +149,8 @@ public static class NullableDateTimeAssertionsTests
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison()
-        {
-            DateTime? subject = null;
-            subject.Must().NotBe((DateTime?)DateTime.Now);
-        }
+        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison() 
+            => NullDate.Must().NotBe((DateTime?)DateTime.Now);
     }
 
     public class BeCloseTo
@@ -173,8 +158,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().BeCloseTo(DateTime.UnixEpoch, TimeSpan.FromDays(1_000));
+            var action = () => NullDate.Must().BeCloseTo(DateTime.UnixEpoch, TimeSpan.FromDays(1_000));
             action.Must().Throw<XunitException>();
         }
     }
@@ -185,8 +169,7 @@ public static class NullableDateTimeAssertionsTests
         public void Should_NotFail_WhenSubjectNull()
         {
             // If it's null, by definition it is not close to the value.
-            DateTime? subject = null;
-            subject.Must().NotBeCloseTo(DateTime.UnixEpoch, TimeSpan.FromDays(1_000));
+            NullDate.Must().NotBeCloseTo(DateTime.UnixEpoch, TimeSpan.FromDays(1_000));
         }
     }
 
@@ -195,8 +178,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().BeAfter(DateTime.MinValue);
+            var action = () => NullDate.Must().BeAfter(DateTime.MinValue);
             action.Must().Throw<XunitException>();
         }
     }
@@ -206,8 +188,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().BeOnOrAfter(DateTime.MinValue);
+            var action = () => NullDate.Must().BeOnOrAfter(DateTime.MinValue);
             action.Must().Throw<XunitException>();
         }
     }
@@ -217,8 +198,7 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().BeBefore(DateTime.MaxValue);
+            var action = () => NullDate.Must().BeBefore(DateTime.MaxValue);
             action.Must().Throw<XunitException>();
         }
     }
@@ -228,32 +208,26 @@ public static class NullableDateTimeAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTime? subject = null;
-            var action = () => subject.Must().BeOnOrBefore(DateTime.MaxValue);
+            var action = () => NullDate.Must().BeOnOrBefore(DateTime.MaxValue);
             action.Must().Throw<XunitException>();
         }
     }
 
     public class Match
     {
-        /*
-         * VS/ReSharper/Rider will flag the DateTime/DateTime? type specifications in the expressions as "not required"
-         * but I've intentionally left them in to make it easier to know whether we're testing the inherited or declared
-         * version of the method.
-         */
 
         [Fact]
         public void Should_NotFail_WhenPredicateSatisfied()
         {
             DateTime? subject = DateTime.UtcNow;
-            subject.Must().Match((DateTime dt) => dt.Year > 1970);
+            subject.Must().Match(dt => dt.Year > 1970);
         }
 
         [Fact]
         public void Should_Fail_WhenPredicateNotSatisfied()
         {
             DateTime? subject = DateTime.UtcNow;
-            var action = () => subject.Must().Match((DateTime dt) => dt.Year > DateTime.UtcNow.Year + 1);
+            var action = () => subject.Must().Match(dt => dt.Year > DateTime.UtcNow.Year + 1);
             action.Must().Throw<XunitException>();
         }
 
@@ -261,14 +235,14 @@ public static class NullableDateTimeAssertionsTests
         public void Should_NotFail_WhenNullablePredicateSatisfied()
         {
             DateTime? subject = DateTime.UtcNow;
-            subject.Must().Match((DateTime? dt) => dt.HasValue && dt.Value.Year > 1970);
+            subject.Must().Match(dt => dt.HasValue && dt.Value.Year > 1970);
         }
 
         [Fact]
         public void Should_Fail_WhenNullablePredicateNotSatisfied()
         {
             DateTime? subject = DateTime.UtcNow;
-            var action = () => subject.Must().Match((DateTime? dt) => dt.HasValue && dt.Value.Year > DateTime.UtcNow.Year + 1);
+            var action = () => subject.Must().Match(dt => dt.HasValue && dt.Value.Year > DateTime.UtcNow.Year + 1);
             action.Must().Throw<XunitException>();
         }
     }

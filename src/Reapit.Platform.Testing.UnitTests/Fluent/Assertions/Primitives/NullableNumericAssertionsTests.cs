@@ -2,6 +2,8 @@
 
 public class NullableNumericAssertionsTests
 {
+    private static T? NullValue<T>() where T: struct => null;
+    
     /*
      * NullableNumericAssertions is an extension of NumericAssertions.  For inherited methods, this class will only test
      * the null case as this cannot be exercised in the NumericAssertionsTests class.
@@ -45,7 +47,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().Be(17);
             action.Must().Throw();
         }
@@ -69,7 +71,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull_AndComparisonIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().Be(null);
             action.Must().NotThrow();
         }
@@ -80,7 +82,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().NotBe(17);
             action.Must().NotThrow();
         }
@@ -104,7 +106,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull_AndComparisonIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().NotBe(null);
             action.Must().Throw();
         }
@@ -115,7 +117,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            byte? subject = null;
+            var subject = NullValue<byte>();
             var action = () => subject.Must().BePositive();
             action.Must().Throw();
         }
@@ -126,7 +128,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            byte? subject = null;
+            var subject = NullValue<byte>();
             var action = () => subject.Must().BeNegative();
             action.Must().Throw();
         }
@@ -137,7 +139,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            sbyte? subject = null;
+            var subject = NullValue<sbyte>();
             var action = () => subject.Must().BeLessThan(50);
             action.Must().Throw();
         }
@@ -148,7 +150,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            uint? subject = null;
+            var subject = NullValue<uint>();
             var action = () => subject.Must().BeLessThanOrEqualTo(49);
             action.Must().Throw();
         }
@@ -159,7 +161,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            uint? subject = null;
+            var subject = NullValue<uint>();
             var action = () => subject.Must().BeGreaterThan(9);
             action.Must().Throw();
         }
@@ -170,7 +172,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            uint? subject = null;
+            var subject = NullValue<uint>();
             var action = () => subject.Must().BeGreaterThanOrEqualTo(10);
             action.Must().Throw();
         }
@@ -181,7 +183,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            uint? subject = null;
+            var subject = NullValue<uint>();
             var action = () => subject.Must().BeInRange(1, 10);
             action.Must().Throw();
         }
@@ -192,7 +194,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            uint? subject = null;
+            var subject = NullValue<uint>();
             var action = () => subject.Must().NotBeInRange(1, 10);
             action.Must().Throw();
         }
@@ -204,7 +206,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull_AndDoesNotSatisfyPredicate()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().Match(i => i == 72);
             action.Must().Throw();
         }
@@ -231,7 +233,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().HaveValue();
             action.Must().Throw();
         }
@@ -250,7 +252,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().NotHaveValue();
             action.Must().NotThrow();
         }
@@ -269,7 +271,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().BeNull();
             action.Must().NotThrow();
         }
@@ -288,7 +290,7 @@ public class NullableNumericAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull()
         {
-            int? subject = null;
+            var subject = NullValue<int>();
             var action = () => subject.Must().NotBeNull();
             action.Must().Throw();
         }

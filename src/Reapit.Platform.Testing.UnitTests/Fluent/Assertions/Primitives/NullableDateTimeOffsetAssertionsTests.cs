@@ -2,6 +2,8 @@
 
 public static class NullableDateTimeOffsetAssertionsTests
 {
+    private static readonly DateTimeOffset? NullDate = null;
+    
     /*
      * NullableDateTimeOffsetAssertions is an extension of DateTimeOffsetAssertions.  For inherited methods, this class
      * will only test the null case as this cannot be exercised in the DateTimeOffsetAssertions class.
@@ -12,8 +14,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().HaveValue();
+            var action = () => NullDate.Must().HaveValue();
             action.Must().Throw();
         }
 
@@ -31,8 +32,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().NotHaveValue();
+            var action = () => NullDate.Must().NotHaveValue();
             action.Must().NotThrow();
         }
 
@@ -50,8 +50,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().BeNull();
+            var action = () => NullDate.Must().BeNull();
             action.Must().NotThrow();
         }
 
@@ -69,8 +68,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectIsNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().NotBeNull();
+            var action = () => NullDate.Must().NotBeNull();
             action.Must().Throw();
         }
 
@@ -92,17 +90,13 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull_AndComparisonNotNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().Be((DateTimeOffset?)DateTimeOffset.Now);
+            var action = () => NullDate.Must().Be((DateTimeOffset?)DateTimeOffset.Now);
             action.Must().Throw<XunitException>();
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNull_AndComparisonNull()
-        {
-            DateTimeOffset? subject = null;
-            subject.Must().Be(null);
-        }
+        public void Should_NotFail_WhenSubjectNull_AndComparisonNull() 
+            => NullDate.Must().Be(null);
 
         [Fact]
         public void Should_NotFail_WhenSubjectEqual_ToNullableComparison()
@@ -122,8 +116,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNotEqual_ToNullComparison()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().Be((DateTimeOffset?)DateTimeOffset.Now);
+            var action = () => NullDate.Must().Be((DateTimeOffset?)DateTimeOffset.Now);
             action.Must().Throw<XunitException>();
         }
     }
@@ -133,15 +126,13 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_NotFail_WhenSubjectNull_AndComparisonNotNull()
         {
-            DateTimeOffset? subject = null;
-            subject.Must().NotBe((DateTimeOffset?)DateTimeOffset.Now);
+            NullDate.Must().NotBe((DateTimeOffset?)DateTimeOffset.Now);
         }
 
         [Fact]
         public void Should_Fail_WhenSubjectNull_AndComparisonNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().NotBe(null);
+            var action = () => NullDate.Must().NotBe(null);
             action.Must().Throw<XunitException>();
         }
 
@@ -161,11 +152,8 @@ public static class NullableDateTimeOffsetAssertionsTests
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison()
-        {
-            DateTimeOffset? subject = null;
-            subject.Must().NotBe((DateTimeOffset?)DateTimeOffset.Now);
-        }
+        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison() 
+            => NullDate.Must().NotBe((DateTimeOffset?)DateTimeOffset.Now);
     }
 
     public class BeCloseTo
@@ -173,8 +161,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().BeCloseTo(DateTimeOffset.UnixEpoch, TimeSpan.FromDays(1_000));
+            var action = () => NullDate.Must().BeCloseTo(DateTimeOffset.UnixEpoch, TimeSpan.FromDays(1_000));
             action.Must().Throw<XunitException>();
         }
     }
@@ -185,8 +172,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         public void Should_NotFail_WhenSubjectNull()
         {
             // If it's null, by definition it is not close to the value.
-            DateTimeOffset? subject = null;
-            subject.Must().NotBeCloseTo(DateTimeOffset.UnixEpoch, TimeSpan.FromDays(1_000));
+            NullDate.Must().NotBeCloseTo(DateTimeOffset.UnixEpoch, TimeSpan.FromDays(1_000));
         }
     }
 
@@ -195,8 +181,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().BeAfter(DateTimeOffset.MinValue);
+            var action = () => NullDate.Must().BeAfter(DateTimeOffset.MinValue);
             action.Must().Throw<XunitException>();
         }
     }
@@ -206,8 +191,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().BeOnOrAfter(DateTimeOffset.MinValue);
+            var action = () => NullDate.Must().BeOnOrAfter(DateTimeOffset.MinValue);
             action.Must().Throw<XunitException>();
         }
     }
@@ -217,8 +201,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().BeBefore(DateTimeOffset.MaxValue);
+            var action = () => NullDate.Must().BeBefore(DateTimeOffset.MaxValue);
             action.Must().Throw<XunitException>();
         }
     }
@@ -228,8 +211,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
-            DateTimeOffset? subject = null;
-            var action = () => subject.Must().BeOnOrBefore(DateTimeOffset.MaxValue);
+            var action = () => NullDate.Must().BeOnOrBefore(DateTimeOffset.MaxValue);
             action.Must().Throw<XunitException>();
         }
     }
@@ -246,14 +228,14 @@ public static class NullableDateTimeOffsetAssertionsTests
         public void Should_NotFail_WhenPredicateSatisfied()
         {
             DateTimeOffset? subject = DateTimeOffset.UtcNow;
-            subject.Must().Match((DateTimeOffset dt) => dt.Year > 1970);
+            subject.Must().Match(dt => dt.Year > 1970);
         }
 
         [Fact]
         public void Should_Fail_WhenPredicateNotSatisfied()
         {
             DateTimeOffset? subject = DateTimeOffset.UtcNow;
-            var action = () => subject.Must().Match((DateTimeOffset dt) => dt.Year > DateTimeOffset.UtcNow.Year + 1);
+            var action = () => subject.Must().Match(dt => dt.Year > DateTimeOffset.UtcNow.Year + 1);
             action.Must().Throw<XunitException>();
         }
 
@@ -261,14 +243,14 @@ public static class NullableDateTimeOffsetAssertionsTests
         public void Should_NotFail_WhenNullablePredicateSatisfied()
         {
             DateTimeOffset? subject = DateTimeOffset.UtcNow;
-            subject.Must().Match((DateTimeOffset? dt) => dt.HasValue && dt.Value.Year > 1970);
+            subject.Must().Match(dt => dt.HasValue && dt.Value.Year > 1970);
         }
 
         [Fact]
         public void Should_Fail_WhenNullablePredicateNotSatisfied()
         {
             DateTimeOffset? subject = DateTimeOffset.UtcNow;
-            var action = () => subject.Must().Match((DateTimeOffset? dt) => dt.HasValue && dt.Value.Year > DateTimeOffset.UtcNow.Year + 1);
+            var action = () => subject.Must().Match(dt => dt.HasValue && dt.Value.Year > DateTimeOffset.UtcNow.Year + 1);
             action.Must().Throw<XunitException>();
         }
     }
