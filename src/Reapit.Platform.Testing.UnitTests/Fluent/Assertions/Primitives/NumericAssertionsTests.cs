@@ -1,6 +1,4 @@
-﻿using Reapit.Platform.Testing.Fluent;
-
-namespace Reapit.Platform.Testing.UnitTests.Fluent.Assertions.Primitives;
+﻿namespace Reapit.Platform.Testing.UnitTests.Fluent.Assertions.Primitives;
 
 public class NumericAssertionsTests
 {

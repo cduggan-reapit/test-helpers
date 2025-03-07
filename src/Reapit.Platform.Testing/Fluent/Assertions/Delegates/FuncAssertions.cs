@@ -1,4 +1,6 @@
-﻿namespace Reapit.Platform.Testing.Fluent.Assertions.Delegates;
+﻿using Reapit.Platform.Testing.Fluent.Assertions.Abstract;
+
+namespace Reapit.Platform.Testing.Fluent.Assertions.Delegates;
 
 /// <summary>Contains assertions for method delegates with a return value.</summary>
 /// <param name="subject">The assertion subject.</param>

@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using Reapit.Platform.Common.Extensions;
 using Reapit.Platform.Testing.Extensions;
-using Reapit.Platform.Testing.Helpers;
 
 namespace Reapit.Platform.Testing.UnitTests.Extensions;
 

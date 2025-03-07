@@ -1,7 +1,7 @@
 ﻿using Reapit.Platform.Testing.Fluent.Core;
 using Reapit.Platform.Testing.Fluent.Failures;
 
-namespace Reapit.Platform.Testing.Fluent.Assertions.Delegates;
+namespace Reapit.Platform.Testing.Fluent.Assertions.Abstract;
 
 /// <summary>Contains assertions for delegate methods.</summary>
 /// <param name="subject">The assertion subject.</param>

@@ -1,8 +1,6 @@
-﻿using Reapit.Platform.Testing.Fluent;
-using Reapit.Platform.Testing.Fluent.Assertions;
+﻿using Reapit.Platform.Testing.Fluent.Assertions;
 using Reapit.Platform.Testing.Fluent.Assertions.Delegates;
 using Reapit.Platform.Testing.Fluent.Core;
-using Xunit.Sdk;
 
 namespace Reapit.Platform.Testing.UnitTests.Fluent.Assertions.Delegates;
 

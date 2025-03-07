@@ -1,7 +1,4 @@
-﻿using Reapit.Platform.Testing.Fluent;
-using Xunit.Sdk;
-
-namespace Reapit.Platform.Testing.UnitTests.Fluent.Assertions.Primitives;
+﻿namespace Reapit.Platform.Testing.UnitTests.Fluent.Assertions.Primitives;
 
 public static class NullableDateTimeAssertionsTests
 {

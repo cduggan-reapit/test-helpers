@@ -1,5 +1,4 @@
-﻿using Reapit.Platform.Testing.Fluent;
-using Reapit.Platform.Testing.Fluent.Assertions;
+﻿using Reapit.Platform.Testing.Fluent.Assertions;
 
 namespace Reapit.Platform.Testing.UnitTests.Fluent.Assertions;
 

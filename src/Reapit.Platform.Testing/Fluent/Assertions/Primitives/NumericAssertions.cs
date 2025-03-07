@@ -222,37 +222,4 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to satisfy the predicate, but found {actual}.")
             .Build();
     }
-    
-    // // TODO: enable these once we have Type assertions
-    // /// <summary>Asserts that the subject is of the expected type.</summary>
-    // /// <param name="compareTo">The expected type.</param>
-    // public AndOperator<TAssertions> BeOfType(Type compareTo)
-    // {
-    //     var subjectType = Subject?.GetType();
-    //
-    //     if (compareTo.IsGenericTypeDefinition && subjectType?.IsGenericType == true)
-    //     {
-    //         subjectType.GetGenericTypeDefinition().Must().Be(compareTo);
-    //     }
-    //     else
-    //     {
-    //         subjectType.Must().Be(compareTo);
-    //     }
-    //
-    //     return new AndOperator<TAssertions>((TAssertions)this);
-    // }
-    //
-    // /// <summary>Asserts that the subject is not of the specified type.</summary>
-    // /// <param name="compareTo">The type against which to compare the subject.</param>
-    // public AndOperator<TAssertions> NotBeOfType(Type compareTo)
-    // {
-    //     var subjectType = Subject?.GetType();
-    //
-    //     if (subjectType is null)
-    //         throw new NotImplementedException();
-    //     
-    //     subjectType.Must().Be(compareTo);
-    //     
-    //     return new AndOperator<TAssertions>((TAssertions)this);
-    // }
 }

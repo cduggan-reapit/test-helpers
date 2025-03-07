@@ -1,10 +1,4 @@
-﻿using System.Net;
-using AutoMapper.Configuration.Conventions;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
-using NSubstitute;
-using Reapit.Platform.Testing.Extensions;
+﻿using Reapit.Platform.Testing.Extensions;
 using Reapit.Platform.Testing.Helpers;
 
 namespace Reapit.Platform.Testing.UnitTests.Helpers;
