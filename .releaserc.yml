@@ -9,7 +9,7 @@ plugins:
   -
     - "semantic-release-replace-plugin"
     - replacements:
-        - files: "src/Reapit.Platform.Common/Reapit.Platform.Common.csproj"
+        - files: "src/Reapit.Platform.Testing/Reapit.Platform.Testing.csproj"
           from: "<Version>*.*.*</Version>"
           to: "<Version>${nextRelease.version}</Version>"
   -
