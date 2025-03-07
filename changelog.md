@@ -1,3 +1,23 @@
+# 1.0.0 (2025-03-07)
+
+
+### Bug Fixes
+
+* **deps:** update common package version ([f18bfb4](https://github.com/cduggan-reapit/test-helpers/commit/f18bfb48991b55224c267022ff892e3218d3272e))
+
+
+### Features
+
+* add boolean assertions ([90be2ed](https://github.com/cduggan-reapit/test-helpers/commit/90be2ed3480d115aef532f75c45db32ff09af96b))
+* add datetime assertions ([fda2781](https://github.com/cduggan-reapit/test-helpers/commit/fda2781f13ea08f99ef94d9badafa736a5c0a267))
+* add datetimeoffset assertions ([ea818d7](https://github.com/cduggan-reapit/test-helpers/commit/ea818d7b2bc337c11dfc7bb7315afa95312ee934))
+* add fluent style test assertions for exceptions ([e306da7](https://github.com/cduggan-reapit/test-helpers/commit/e306da741f8f1c29754a26d3779c630be5861202))
+* add fluent style test assertions for numeric types ([f057d2d](https://github.com/cduggan-reapit/test-helpers/commit/f057d2df372781d1487bdc18815cdbc06db9a911))
+* add fluent style test assertions for sync delegates ([f789e13](https://github.com/cduggan-reapit/test-helpers/commit/f789e138b49385ec55a2f301a47b35c6d02730fb))
+* add string assertions ([a3ce518](https://github.com/cduggan-reapit/test-helpers/commit/a3ce518ee04e9d6025af402f6174f9a125ca3e25))
+* enum assertions ([67c8025](https://github.com/cduggan-reapit/test-helpers/commit/67c802551ef4ca441a22379241ee5a027551549f))
+* tentative introduction of fluent syntax ([0addf59](https://github.com/cduggan-reapit/test-helpers/commit/0addf591561a14e2153a2abea4ea89fd332e5562))
+
 # [2.1.0](https://github.com/reapit/Reapit.Platform.Common/compare/v2.0.0...v2.1.0) (2025-02-12)
 
 
