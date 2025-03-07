@@ -45,7 +45,7 @@ public static class BooleanAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotBe
     {
         [Fact]
@@ -92,7 +92,7 @@ public static class BooleanAssertionsTests
             var action = () => FalseValue.Must().BeTrue();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectTrue()
         {
@@ -100,7 +100,7 @@ public static class BooleanAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class BeFalse
     {
         [Fact]
@@ -109,7 +109,7 @@ public static class BooleanAssertionsTests
             var action = () => FalseValue.Must().BeFalse();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectTrue()
         {

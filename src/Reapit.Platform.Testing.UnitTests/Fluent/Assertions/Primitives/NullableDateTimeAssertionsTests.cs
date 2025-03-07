@@ -94,7 +94,7 @@ public static class NullableDateTimeAssertionsTests
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNull_AndComparisonNull() 
+        public void Should_NotFail_WhenSubjectNull_AndComparisonNull()
             => NullDate.Must().Be(null);
 
         [Fact]
@@ -123,7 +123,7 @@ public static class NullableDateTimeAssertionsTests
     public class NotBe
     {
         [Fact]
-        public void Should_NotFail_WhenSubjectNull_AndComparisonNotNull() 
+        public void Should_NotFail_WhenSubjectNull_AndComparisonNotNull()
             => NullDate.Must().NotBe((DateTime?)DateTime.Now);
 
         [Fact]
@@ -149,7 +149,7 @@ public static class NullableDateTimeAssertionsTests
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison() 
+        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison()
             => NullDate.Must().NotBe((DateTime?)DateTime.Now);
     }
 

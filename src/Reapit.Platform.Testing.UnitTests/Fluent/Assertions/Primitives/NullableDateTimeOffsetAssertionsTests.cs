@@ -3,7 +3,7 @@
 public static class NullableDateTimeOffsetAssertionsTests
 {
     private static readonly DateTimeOffset? NullDate = null;
-    
+
     /*
      * NullableDateTimeOffsetAssertions is an extension of DateTimeOffsetAssertions.  For inherited methods, this class
      * will only test the null case as this cannot be exercised in the DateTimeOffsetAssertions class.
@@ -95,7 +95,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNull_AndComparisonNull() 
+        public void Should_NotFail_WhenSubjectNull_AndComparisonNull()
             => NullDate.Must().Be(null);
 
         [Fact]
@@ -152,7 +152,7 @@ public static class NullableDateTimeOffsetAssertionsTests
         }
 
         [Fact]
-        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison() 
+        public void Should_NotFail_WhenSubjectNotEqual_ToNullComparison()
             => NullDate.Must().NotBe((DateTimeOffset?)DateTimeOffset.Now);
     }
 

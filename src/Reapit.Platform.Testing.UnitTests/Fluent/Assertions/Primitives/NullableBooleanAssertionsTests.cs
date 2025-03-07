@@ -72,11 +72,11 @@ public static class NullableBooleanAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     /*
      * Inherited Assertions
      */
-    
+
     public class Be
     {
         [Fact]
@@ -86,7 +86,7 @@ public static class NullableBooleanAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotBe
     {
         [Fact]
@@ -106,7 +106,7 @@ public static class NullableBooleanAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class BeFalse
     {
         [Fact]

@@ -19,7 +19,7 @@ public class BooleanAssertions<TAssertions>
 
     /// <summary>The subject of assertions.</summary>
     protected bool? Subject { get; }
-    
+
     /// <summary>Initializes a new instance of the <see cref="BooleanAssertions"/> class.</summary>
     /// <param name="subject">The nullable assertion subject.</param>
     protected BooleanAssertions(bool? subject) => Subject = subject;
@@ -42,14 +42,14 @@ public class BooleanAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject has the same value as <paramref name="compareTo"/>.</summary>
     /// <param name="compareTo">The value against which the subject is compared.</param>
     public AndOperator<TAssertions> Be(bool? compareTo)
     {
-        if(Subject is null && compareTo is null)
+        if (Subject is null && compareTo is null)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         if (Subject == compareTo)
             return new AndOperator<TAssertions>((TAssertions)this);
 
@@ -59,7 +59,7 @@ public class BooleanAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject has the same value as <paramref name="compareTo"/>.</summary>
     /// <param name="compareTo">The value against which the subject is compared.</param>
     public AndOperator<TAssertions> NotBe(bool compareTo)
@@ -73,7 +73,7 @@ public class BooleanAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} not to be {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject has the same value as <paramref name="compareTo"/>.</summary>
     /// <param name="compareTo">The value against which the subject is compared.</param>
     public AndOperator<TAssertions> NotBe(bool? compareTo)

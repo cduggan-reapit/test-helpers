@@ -141,7 +141,7 @@ public static class AssertionExtensions
     /// <summary>Create the assertions object for a <see langword="bool"/> object.</summary>
     /// <param name="subject">The subject of the assertions.</param>
     public static BooleanAssertions Must(this bool subject) => new(subject);
-    
+
     /// <summary>Create the assertions object for a nullable <see langword="bool"/> object.</summary>
     /// <param name="subject">The subject of the assertions.</param>
     public static NullableBooleanAssertions Must(this bool? subject) => new(subject);

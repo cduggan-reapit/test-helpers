@@ -2,8 +2,8 @@
 
 public class NullableNumericAssertionsTests
 {
-    private static T? NullValue<T>() where T: struct => null;
-    
+    private static T? NullValue<T>() where T : struct => null;
+
     /*
      * NullableNumericAssertions is an extension of NumericAssertions.  For inherited methods, this class will only test
      * the null case as this cannot be exercised in the NumericAssertionsTests class.
