@@ -1,6 +1,6 @@
-﻿using System.Linq.Expressions;
-using Reapit.Platform.Testing.Fluent.Core;
+﻿using Reapit.Platform.Testing.Fluent.Core;
 using Reapit.Platform.Testing.Fluent.Failures;
+using System.Linq.Expressions;
 
 namespace Reapit.Platform.Testing.Fluent.Assertions.Primitives;
 
@@ -9,7 +9,6 @@ namespace Reapit.Platform.Testing.Fluent.Assertions.Primitives;
 [DebuggerNonUserCode]
 public class NullableDateTimeOffsetAssertions(DateTimeOffset? subject)
     : NullableDateTimeOffsetAssertions<NullableDateTimeOffsetAssertions>(subject);
-
 
 /// <summary>Contains assertions for nullable DateTimeOffset types.</summary>
 /// <typeparam name="TAssertions">The type of assertions to return in continuation objects.</typeparam>
@@ -24,7 +23,7 @@ public class NullableDateTimeOffsetAssertions<TAssertions>(DateTimeOffset? subje
     {
         if (Subject.HasValue)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("actual", Subject)
             .SetMessageTemplate("Expected {context} to have a value, but found {actual}.")
@@ -36,7 +35,7 @@ public class NullableDateTimeOffsetAssertions<TAssertions>(DateTimeOffset? subje
     {
         if (!Subject.HasValue)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("actual", Subject)
             .SetMessageTemplate("Expected {context} not to have a value, but found {actual}.")
@@ -50,12 +49,12 @@ public class NullableDateTimeOffsetAssertions<TAssertions>(DateTimeOffset? subje
     /// <summary>Asserts that the subject is <see langword="null"/>.</summary>
     public AndOperator<TAssertions> NotBeNull()
         => HaveValue();
-    
+
     /// <summary>Asserts that the subject matches the given predicate.</summary>
     /// <param name="predicate">The predicate which must be satisfied.</param>
     public AndOperator<TAssertions> Match(Expression<Func<DateTimeOffset?, bool>> predicate)
     {
-        if(predicate.Compile()(Subject))
+        if (predicate.Compile()(Subject))
             return new AndOperator<TAssertions>((TAssertions)this);
 
         throw TestFailureBuilder.CreateForContext(Context)

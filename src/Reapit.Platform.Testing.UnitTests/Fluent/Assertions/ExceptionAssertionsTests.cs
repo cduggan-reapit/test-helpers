@@ -13,7 +13,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("different");
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotThrow_WhenNoComparerProvided_AndStringsMatch_CaseInsensitive()
         {
@@ -21,7 +21,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("EXAMPLE");
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotThrow_WhenNoComparerProvided_AndStringsIdentical()
         {
@@ -29,7 +29,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("example");
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Throw_WhenCaseInsensitiveComparerProvided_AndStringsDoNotMatch()
         {
@@ -37,7 +37,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("different", StringComparison.OrdinalIgnoreCase);
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotThrow_WhenCaseInsensitiveComparerProvided_AndStringsMatch_CaseInsensitive()
         {
@@ -45,7 +45,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("EXAMPLE", StringComparison.OrdinalIgnoreCase);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotThrow_WhenCaseInsensitiveComparerProvided_AndStringsIdentical()
         {
@@ -53,7 +53,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("example", StringComparison.OrdinalIgnoreCase);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Throw_WhenCaseSensitiveComparerProvided_AndStringsDoNotMatch()
         {
@@ -61,7 +61,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("different", StringComparison.Ordinal);
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_Throw_WhenCaseSensitiveComparerProvided_AndStringsMatch_CaseInsensitive()
         {
@@ -69,7 +69,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithMessage("EXAMPLE", StringComparison.Ordinal);
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotThrow_WhenCaseSensitiveComparerProvided_AndStringsIdentical()
         {
@@ -88,7 +88,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithInnerException<Exception>();
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_Throw_WhenInnerExceptionOfDifferentType()
         {
@@ -96,7 +96,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithInnerException<ArgumentException>();
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotThrow_WhenInnerExceptionOfDerivedType()
         {
@@ -104,7 +104,7 @@ public static class ExceptionAssertionsTests
             var action = () => exception.CreateSut().WithInnerException<Exception>();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotThrow_WhenInnerExceptionOfType()
         {
@@ -113,7 +113,7 @@ public static class ExceptionAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     /*
      * Private methods
      */

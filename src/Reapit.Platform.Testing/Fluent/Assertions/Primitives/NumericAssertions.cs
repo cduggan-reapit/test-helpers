@@ -1,7 +1,7 @@
 ﻿
-using System.Linq.Expressions;
 using Reapit.Platform.Testing.Fluent.Core;
 using Reapit.Platform.Testing.Fluent.Failures;
+using System.Linq.Expressions;
 
 namespace Reapit.Platform.Testing.Fluent.Assertions.Primitives;
 
@@ -23,20 +23,20 @@ public class NumericAssertions<T, TAssertions>
 {
     /// <summary>The assertion context name.</summary>
     protected const string Context = "number";
-    
+
     /// <summary>The subject of assertions.</summary>
     protected T? Subject { get; }
 
     /// <summary>Initializes a new instance of the <see cref="NumericAssertions{T}"/> class.</summary>
     /// <param name="subject">The nullable assertion subject.</param>
     protected NumericAssertions(T? subject) => Subject = subject;
-    
+
     /// <summary>Initializes a new instance of the <see cref="NumericAssertions{T}"/> class.</summary>
     /// <param name="subject">The assertion subject.</param>
     protected NumericAssertions(T subject) : this((T?)subject)
     {
     }
-    
+
     /// <summary>Asserts that the subject is the same as the <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The expected value.</param>
     public AndOperator<TAssertions> Be(T compareTo)
@@ -50,14 +50,14 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to be {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is the same as the <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The expected value.</param>
     public AndOperator<TAssertions> Be(T? compareTo)
     {
-        if(Subject is null && compareTo is null)
+        if (Subject is null && compareTo is null)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         // If compareTo is null then Subject must be null, otherwise the values must be the same.
         if (compareTo is { } value ? Subject?.CompareTo(value) == 0 : Subject is null)
             return new AndOperator<TAssertions>((TAssertions)this);
@@ -97,7 +97,7 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to not be {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is greater than zero.</summary>
     public AndOperator<TAssertions> BePositive()
     {
@@ -109,7 +109,7 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to be positive, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is less than zero.</summary>
     public AndOperator<TAssertions> BeNegative()
     {
@@ -135,7 +135,7 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to be less than {lessThan}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is less than or equal to the <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value against which the subject is compared.</param>
     public AndOperator<TAssertions> BeLessThanOrEqualTo(T compareTo)
@@ -149,7 +149,7 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to be less than or equal to {lessThanOrEqualTo}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is greater than the <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value against which the subject is compared.</param>
     public AndOperator<TAssertions> BeGreaterThan(T compareTo)
@@ -163,7 +163,7 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to be greater than {greaterThan}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is greater than or equal to the <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value against which the subject is compared.</param>
     public AndOperator<TAssertions> BeGreaterThanOrEqualTo(T compareTo)
@@ -183,7 +183,7 @@ public class NumericAssertions<T, TAssertions>
     /// <param name="maximumValue">The upper bound of the acceptable range.</param>
     public AndOperator<TAssertions> BeInRange(T minimumValue, T maximumValue)
     {
-        if(Subject is { } subject && subject.CompareTo(minimumValue) >= 0 && subject.CompareTo(maximumValue) <= 0)
+        if (Subject is { } subject && subject.CompareTo(minimumValue) >= 0 && subject.CompareTo(maximumValue) <= 0)
             return new AndOperator<TAssertions>((TAssertions)this);
 
         throw TestFailureBuilder.CreateForContext(Context)
@@ -193,13 +193,13 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to be between {lowerBound} and {upperBound}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is not between <paramref name="minimumValue"/> and <paramref name="maximumValue"/>, inclusive.</summary>
     /// <param name="minimumValue">The lower bound of the acceptable range.</param>
     /// <param name="maximumValue">The upper bound of the acceptable range.</param>
     public AndOperator<TAssertions> NotBeInRange(T minimumValue, T maximumValue)
     {
-        if(Subject is { } subject && !(subject.CompareTo(minimumValue) >= 0 && subject.CompareTo(maximumValue) <= 0))
+        if (Subject is { } subject && !(subject.CompareTo(minimumValue) >= 0 && subject.CompareTo(maximumValue) <= 0))
             return new AndOperator<TAssertions>((TAssertions)this);
 
         throw TestFailureBuilder.CreateForContext(Context)
@@ -209,12 +209,12 @@ public class NumericAssertions<T, TAssertions>
             .SetMessageTemplate("Expected {context} to not be between {lowerBound} and {upperBound}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject matches the given predicate.</summary>
     /// <param name="predicate">The predicate which must be satisfied.</param>
     public AndOperator<TAssertions> Match(Expression<Func<T, bool>> predicate)
     {
-        if(Subject is { } subject && predicate.Compile()(subject))
+        if (Subject is { } subject && predicate.Compile()(subject))
             return new AndOperator<TAssertions>((TAssertions)this);
 
         throw TestFailureBuilder.CreateForContext(Context)

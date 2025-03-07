@@ -8,7 +8,7 @@ public static class StringAssertionsTests
     private const string NullString = null;
     private const string EmptyString = "";
     private const string WhiteSpaceString = "     ";
-    
+
     public class Be
     {
         [Fact]
@@ -32,7 +32,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotBe
     {
         [Fact]
@@ -56,7 +56,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class BeEquivalentTo
     {
         [Fact]
@@ -72,7 +72,7 @@ public static class StringAssertionsTests
             var action = () => PotterString.Must().BeEquivalentTo(LoremString);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectEquivalent()
         {
@@ -87,7 +87,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotBeEquivalentTo
     {
         [Fact]
@@ -103,7 +103,7 @@ public static class StringAssertionsTests
             var action = () => PotterString.Must().NotBeEquivalentTo(LoremString);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectEquivalent()
         {
@@ -127,7 +127,7 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().BeEmpty();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectWhiteSpace()
         {
@@ -141,7 +141,7 @@ public static class StringAssertionsTests
             var action = () => EmptyString.Must().BeEmpty();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectNotEmpty()
         {
@@ -149,7 +149,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class NotBeEmpty
     {
         [Fact]
@@ -158,7 +158,7 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().NotBeEmpty();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectWhiteSpace()
         {
@@ -172,7 +172,7 @@ public static class StringAssertionsTests
             var action = () => EmptyString.Must().NotBeEmpty();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectNotEmpty()
         {
@@ -204,7 +204,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class BeNullOrEmpty
     {
         [Fact]
@@ -213,7 +213,7 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().BeNullOrEmpty();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectWhiteSpace()
         {
@@ -227,7 +227,7 @@ public static class StringAssertionsTests
             var action = () => EmptyString.Must().BeNullOrEmpty();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectNotEmpty()
         {
@@ -235,7 +235,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class NotBeNullOrEmpty
     {
         [Fact]
@@ -244,7 +244,7 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().NotBeNullOrEmpty();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectWhiteSpace()
         {
@@ -258,7 +258,7 @@ public static class StringAssertionsTests
             var action = () => EmptyString.Must().NotBeNullOrEmpty();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectNotEmpty()
         {
@@ -266,7 +266,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class BeNullOrWhiteSpace
     {
         [Fact]
@@ -275,7 +275,7 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().BeNullOrWhiteSpace();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectWhiteSpace()
         {
@@ -289,7 +289,7 @@ public static class StringAssertionsTests
             var action = () => EmptyString.Must().BeNullOrWhiteSpace();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectNotEmpty()
         {
@@ -297,7 +297,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class NotBeNullOrWhiteSpace
     {
         [Fact]
@@ -306,7 +306,7 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().NotBeNullOrWhiteSpace();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectWhiteSpace()
         {
@@ -320,7 +320,7 @@ public static class StringAssertionsTests
             var action = () => EmptyString.Must().NotBeNullOrWhiteSpace();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectNotEmpty()
         {
@@ -337,42 +337,42 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().StartWith(PotterString[..10]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferent_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().StartWith(LoremString[..10]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().StartWith(PotterString[..10].ToLowerInvariant());
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectMatches_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().StartWith(PotterString[..10]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferent_AndComparisonProvided()
         {
             var action = () => PotterString.Must().StartWith(LoremString[..10], StringComparison.OrdinalIgnoreCase);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndCaseAwareComparisonProvided()
         {
             var action = () => PotterString.Must().StartWith(PotterString[..10].ToLowerInvariant(), StringComparison.Ordinal);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndCaseInsensitiveComparisonProvided()
         {
@@ -380,7 +380,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotStartWith
     {
         [Fact]
@@ -389,42 +389,42 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().NotStartWith(PotterString[..10]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferent_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotStartWith(LoremString[..10]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotStartWith(PotterString[..10].ToLowerInvariant());
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectMatches_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotStartWith(PotterString[..10]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferent_AndComparisonProvided()
         {
             var action = () => PotterString.Must().NotStartWith(LoremString[..10], StringComparison.OrdinalIgnoreCase);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndCaseAwareComparisonProvided()
         {
             var action = () => PotterString.Must().NotStartWith(PotterString[..10].ToLowerInvariant(), StringComparison.Ordinal);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndCaseInsensitiveComparisonProvided()
         {
@@ -432,7 +432,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class EndWith
     {
         [Fact]
@@ -441,42 +441,42 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().EndWith(PotterString[^10..]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferent_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().EndWith(LoremString[^10..]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().EndWith(PotterString[^10..].ToLowerInvariant());
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectMatches_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().EndWith(PotterString[^10..]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferent_AndComparisonProvided()
         {
             var action = () => PotterString.Must().EndWith(LoremString[^10..], StringComparison.OrdinalIgnoreCase);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndCaseAwareComparisonProvided()
         {
             var action = () => PotterString.Must().EndWith(PotterString[^10..].ToLowerInvariant(), StringComparison.Ordinal);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndCaseInsensitiveComparisonProvided()
         {
@@ -484,7 +484,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotEndWith
     {
         [Fact]
@@ -493,42 +493,42 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().NotEndWith(PotterString[^10..]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferent_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotEndWith(LoremString[^10..]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotEndWith(PotterString[^10..].ToLowerInvariant());
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectMatches_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotEndWith(PotterString[^10..]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferent_AndComparisonProvided()
         {
             var action = () => PotterString.Must().NotEndWith(LoremString[^10..], StringComparison.OrdinalIgnoreCase);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndCaseAwareComparisonProvided()
         {
             var action = () => PotterString.Must().NotEndWith(PotterString[^10..].ToLowerInvariant(), StringComparison.Ordinal);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndCaseInsensitiveComparisonProvided()
         {
@@ -536,7 +536,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class Contain
     {
         [Fact]
@@ -545,42 +545,42 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().Contain(PotterString[5..^5]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferent_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().Contain(LoremString[5..^5]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().Contain(PotterString[5..^5].ToLowerInvariant());
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectMatches_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().Contain(PotterString[5..^5]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferent_AndComparisonProvided()
         {
             var action = () => PotterString.Must().Contain(LoremString[5..^5], StringComparison.OrdinalIgnoreCase);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndCaseAwareComparisonProvided()
         {
             var action = () => PotterString.Must().Contain(PotterString[5..^5].ToLowerInvariant(), StringComparison.Ordinal);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndCaseInsensitiveComparisonProvided()
         {
@@ -588,7 +588,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotContain
     {
         [Fact]
@@ -597,42 +597,42 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().NotContain(PotterString[5..^5]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferent_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotContain(LoremString[5..^5]);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotContain(PotterString[5..^5].ToLowerInvariant());
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectMatches_AndNoComparisonProvided()
         {
             var action = () => PotterString.Must().NotContain(PotterString[5..^5]);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferent_AndComparisonProvided()
         {
             var action = () => PotterString.Must().NotContain(LoremString[5..^5], StringComparison.OrdinalIgnoreCase);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectDifferentCase_AndCaseAwareComparisonProvided()
         {
             var action = () => PotterString.Must().NotContain(PotterString[5..^5].ToLowerInvariant(), StringComparison.Ordinal);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDifferentCase_AndCaseInsensitiveComparisonProvided()
         {
@@ -640,7 +640,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     /*
      * Inherited Assertions (ReferenceTypeAssertions)
      * We'll only test the ones relevant to `string` here (BeOfType and BeAssignableTo are somewhat moot in this context)
@@ -654,7 +654,7 @@ public static class StringAssertionsTests
             var action = () => LoremString.Must().BeNull();
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectNull()
         {
@@ -662,7 +662,7 @@ public static class StringAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotBeNull
     {
         [Fact]
@@ -671,7 +671,7 @@ public static class StringAssertionsTests
             var action = () => LoremString.Must().NotBeNull();
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectNull()
         {
@@ -679,7 +679,7 @@ public static class StringAssertionsTests
             action.Must().Throw<XunitException>();
         }
     }
-    
+
     public class Match
     {
         [Fact]
@@ -688,14 +688,14 @@ public static class StringAssertionsTests
             var action = () => NullString.Must().Match(s => true);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectDoesNotSatisfyPredicate()
         {
             var action = () => LoremString.Must().Match(s => s == NullString);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectSatisfiesPredicate()
         {

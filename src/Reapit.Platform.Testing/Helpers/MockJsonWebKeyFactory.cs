@@ -1,5 +1,5 @@
-﻿using System.Security.Cryptography;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
 
 namespace Reapit.Platform.Testing.Helpers;
 

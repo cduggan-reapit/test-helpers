@@ -25,7 +25,7 @@ public static class NullableDateTimeAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotHaveValue
     {
         [Fact]
@@ -82,11 +82,11 @@ public static class NullableDateTimeAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     /*
      * Inherited methods
      */
-    
+
     public class Be
     {
         [Fact]
@@ -96,7 +96,7 @@ public static class NullableDateTimeAssertionsTests
             var action = () => subject.Must().Be((DateTime?)DateTime.Now);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectNull_AndComparisonNull()
         {
@@ -136,7 +136,7 @@ public static class NullableDateTimeAssertionsTests
             DateTime? subject = null;
             subject.Must().NotBe((DateTime?)DateTime.Now);
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectNull_AndComparisonNull()
         {
@@ -241,14 +241,14 @@ public static class NullableDateTimeAssertionsTests
          * but I've intentionally left them in to make it easier to know whether we're testing the inherited or declared
          * version of the method.
          */
-        
+
         [Fact]
         public void Should_NotFail_WhenPredicateSatisfied()
         {
             DateTime? subject = DateTime.UtcNow;
             subject.Must().Match((DateTime dt) => dt.Year > 1970);
         }
-        
+
         [Fact]
         public void Should_Fail_WhenPredicateNotSatisfied()
         {
@@ -256,14 +256,14 @@ public static class NullableDateTimeAssertionsTests
             var action = () => subject.Must().Match((DateTime dt) => dt.Year > DateTime.UtcNow.Year + 1);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenNullablePredicateSatisfied()
         {
             DateTime? subject = DateTime.UtcNow;
             subject.Must().Match((DateTime? dt) => dt.HasValue && dt.Value.Year > 1970);
         }
-        
+
         [Fact]
         public void Should_Fail_WhenNullablePredicateNotSatisfied()
         {

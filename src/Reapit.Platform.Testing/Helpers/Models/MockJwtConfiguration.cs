@@ -15,7 +15,7 @@ public record MockJwtConfiguration(
 {
     internal const string DefaultAudience = "http://test.example.net/audience";
     internal const string DefaultIssuer = "http://test.example.net/issuer";
-    
+
     /// <summary>Get the default configuration when all you need is a token in the correct format.</summary>
     public static MockJwtConfiguration Default => new(DefaultAudience, DefaultIssuer);
 }

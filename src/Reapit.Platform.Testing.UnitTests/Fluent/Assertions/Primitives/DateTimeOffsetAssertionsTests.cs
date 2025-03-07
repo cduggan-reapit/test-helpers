@@ -46,7 +46,7 @@ public static class DateTimeOffsetAssertionsTests
             var action = () => DateTimeOffset.UnixEpoch.Must().BeCloseTo(DateTimeOffset.UnixEpoch, TimeSpan.FromDays(-1));
             action.Must().ThrowExactly<ArgumentException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectBeforePrecision()
         {
@@ -55,7 +55,7 @@ public static class DateTimeOffsetAssertionsTests
             var action = () => subject.Must().BeCloseTo(compareTo, TimeSpan.FromDays(10));
             action.Must().ThrowExactly<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectExactlyPrecisionBefore()
         {
@@ -63,14 +63,14 @@ public static class DateTimeOffsetAssertionsTests
             var compareTo = subject.AddDays(-10);
             subject.Must().BeCloseTo(compareTo, TimeSpan.FromDays(10));
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectInRange()
         {
             var subject = new DateTimeOffset(1970, 1, 1, 1, 1, 1, TimeSpan.Zero);
             subject.Must().BeCloseTo(subject, TimeSpan.FromMilliseconds(1));
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectExactlyPrecisionAfter()
         {
@@ -78,7 +78,7 @@ public static class DateTimeOffsetAssertionsTests
             var compareTo = subject.AddDays(10);
             subject.Must().BeCloseTo(compareTo, TimeSpan.FromDays(10));
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectAfterPrecision()
         {
@@ -97,7 +97,7 @@ public static class DateTimeOffsetAssertionsTests
             var action = () => DateTimeOffset.UnixEpoch.Must().NotBeCloseTo(DateTimeOffset.UnixEpoch, TimeSpan.FromDays(-1));
             action.Must().ThrowExactly<ArgumentException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectBeforePrecision()
         {
@@ -105,7 +105,7 @@ public static class DateTimeOffsetAssertionsTests
             var compareTo = subject.AddDays(11);
             subject.Must().NotBeCloseTo(compareTo, TimeSpan.FromDays(10));
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectExactlyPrecisionBefore()
         {
@@ -114,7 +114,7 @@ public static class DateTimeOffsetAssertionsTests
             var action = () => subject.Must().NotBeCloseTo(compareTo, TimeSpan.FromDays(10));
             action.Must().ThrowExactly<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectInRange()
         {
@@ -122,7 +122,7 @@ public static class DateTimeOffsetAssertionsTests
             var action = () => subject.Must().NotBeCloseTo(subject, TimeSpan.FromMilliseconds(1));
             action.Must().ThrowExactly<XunitException>();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectExactlyPrecisionAfter()
         {
@@ -131,7 +131,7 @@ public static class DateTimeOffsetAssertionsTests
             var action = () => subject.Must().NotBeCloseTo(compareTo, TimeSpan.FromDays(10));
             action.Must().ThrowExactly<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectAfterPrecision()
         {
@@ -263,7 +263,7 @@ public static class DateTimeOffsetAssertionsTests
             var subject = DateTimeOffset.UtcNow;
             subject.Must().Match(dt => dt.Year > 1970);
         }
-        
+
         [Fact]
         public void Should_Fail_WhenPredicateNotSatisfied()
         {

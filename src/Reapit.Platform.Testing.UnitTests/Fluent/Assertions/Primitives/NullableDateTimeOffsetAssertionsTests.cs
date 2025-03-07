@@ -25,7 +25,7 @@ public static class NullableDateTimeOffsetAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotHaveValue
     {
         [Fact]
@@ -82,11 +82,11 @@ public static class NullableDateTimeOffsetAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     /*
      * Inherited methods
      */
-    
+
     public class Be
     {
         [Fact]
@@ -96,7 +96,7 @@ public static class NullableDateTimeOffsetAssertionsTests
             var action = () => subject.Must().Be((DateTimeOffset?)DateTimeOffset.Now);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectNull_AndComparisonNull()
         {
@@ -136,7 +136,7 @@ public static class NullableDateTimeOffsetAssertionsTests
             DateTimeOffset? subject = null;
             subject.Must().NotBe((DateTimeOffset?)DateTimeOffset.Now);
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectNull_AndComparisonNull()
         {
@@ -241,14 +241,14 @@ public static class NullableDateTimeOffsetAssertionsTests
          * but I've intentionally left them in to make it easier to know whether we're testing the inherited or declared
          * version of the method.
          */
-        
+
         [Fact]
         public void Should_NotFail_WhenPredicateSatisfied()
         {
             DateTimeOffset? subject = DateTimeOffset.UtcNow;
             subject.Must().Match((DateTimeOffset dt) => dt.Year > 1970);
         }
-        
+
         [Fact]
         public void Should_Fail_WhenPredicateNotSatisfied()
         {
@@ -256,14 +256,14 @@ public static class NullableDateTimeOffsetAssertionsTests
             var action = () => subject.Must().Match((DateTimeOffset dt) => dt.Year > DateTimeOffset.UtcNow.Year + 1);
             action.Must().Throw<XunitException>();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenNullablePredicateSatisfied()
         {
             DateTimeOffset? subject = DateTimeOffset.UtcNow;
             subject.Must().Match((DateTimeOffset? dt) => dt.HasValue && dt.Value.Year > 1970);
         }
-        
+
         [Fact]
         public void Should_Fail_WhenNullablePredicateNotSatisfied()
         {

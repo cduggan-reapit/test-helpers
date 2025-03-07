@@ -20,15 +20,15 @@ public static class AutoMapperFactoryTests
     }
 }
 
-internal class TestProfile : Profile
+internal sealed class TestProfile : Profile
 {
-    public record TestInputModel(string Input);
+    public sealed record TestInputModel(string Input);
 
-    public record TestOutputModel(int? Output);
-    
+    public sealed record TestOutputModel(int? Output);
+
     // You can't use out parameters in configured mapping, so we use this method instead
     private static int? MapInput(string input) => int.TryParse(input, out var cast) ? cast : null;
-    
+
     public TestProfile()
     {
         CreateMap<TestInputModel, TestOutputModel>()

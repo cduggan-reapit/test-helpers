@@ -1,2 +1,2 @@
-﻿global using Xunit.Sdk;
-global using System.Diagnostics;
+﻿global using System.Diagnostics;
+global using Xunit.Sdk;

@@ -20,13 +20,13 @@ public static class MockJsonWebTokenFactory
             Claims = configuration.Claims
         };
 
-        if(configuration.SigningCredentials != null)
+        if (configuration.SigningCredentials != null)
             token.SigningCredentials = configuration.SigningCredentials;
-        
+
         var handler = new JsonWebTokenHandler();
         return handler.CreateToken(token);
     }
-    
+
     /// <summary>Read a serialized JWT as a JsonWebToken.</summary>
     /// <param name="token">The JWT.</param>
     public static JsonWebToken Read(string token)

@@ -1,6 +1,6 @@
-﻿using System.Text;
-using Reapit.Platform.Common.Extensions;
+﻿using Reapit.Platform.Common.Extensions;
 using Reapit.Platform.Testing.Extensions;
+using System.Text;
 
 namespace Reapit.Platform.Testing.UnitTests.Extensions;
 
@@ -17,5 +17,5 @@ public class ObjectExtensionsTests
         var output = input.ToStringContent();
         var expected = new StringContent(input.Serialize(), Encoding.UTF8, "application/json");
         Assert.Equivalent(expected, output);
-    } 
+    }
 }

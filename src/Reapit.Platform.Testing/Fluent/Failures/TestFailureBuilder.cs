@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Reapit.Platform.Common.Extensions;
+﻿using Reapit.Platform.Common.Extensions;
+using System.Text;
 
 namespace Reapit.Platform.Testing.Fluent.Failures;
 
@@ -8,16 +8,16 @@ public class TestFailureBuilder
 {
     /// <summary>Gets an instance of <see cref="TestFailureBuilder"/> for the defined context.</summary>
     /// <param name="context">The test context.</param>
-    public static TestFailureBuilder CreateForContext(string context) 
+    public static TestFailureBuilder CreateForContext(string context)
         => new TestFailureBuilder().SetContext(context);
-    
+
     /// <summary>The test context.</summary>
     // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public string Context { get; private set; }
-    
+
     /// <summary>The error message template.</summary>
     private string MessageTemplate { get; set; }
-    
+
     /// <summary>The inner exception to include in built exceptions.</summary>
     private Exception InnerException { get; set; }
 
@@ -36,7 +36,7 @@ public class TestFailureBuilder
     {
         Context = context;
         SetContextData("context", context, false);
-        
+
         return this;
     }
 
@@ -59,7 +59,7 @@ public class TestFailureBuilder
         MessageTemplate = template;
         return this;
     }
-    
+
     /// <summary>Sets the inner exception for the built exception.</summary>
     /// <param name="exception">The inner exception.</param>
     /// <returns>A reference to the TestFailureBuilder after the operation has been performed.</returns>
@@ -68,7 +68,7 @@ public class TestFailureBuilder
         InnerException = exception;
         return this;
     }
-    
+
     /// <summary>Creates an exception representing the configured test failure.</summary>
     public XunitException Build() => new(BuildMessage(), InnerException);
 
@@ -79,7 +79,7 @@ public class TestFailureBuilder
     private string BuildMessage()
     {
         var sb = new StringBuilder();
-        
+
         // First step: work through the template and replace stuff.  It's recursive, so we'll keep going until there's no {key} matches.
         var message = MessageTemplate;
         var substitutionKeys = ContextData.Select(cd => $"{{{cd.Key}}}").ToList();
@@ -87,10 +87,10 @@ public class TestFailureBuilder
         while (substitutionKeys.Any(k => message is not null && message.Contains(k, StringComparison.OrdinalIgnoreCase)))
         {
             message = ContextData.Aggregate(
-                seed: message, 
-                func: (current, substitute) 
+                seed: message,
+                func: (current, substitute)
                     => current?.Replace($"{{{substitute.Key}}}", GetStringRepresentation(substitute.Value.Value), StringComparison.OrdinalIgnoreCase));
-            
+
             // Safety valve
             if (iterations++ >= 5) break;
         }
@@ -100,13 +100,13 @@ public class TestFailureBuilder
         var reportable = ContextData.Where(cd => cd.Value.Reportable).ToDictionary();
         if (!reportable.Any())
             return sb.ToString();
-        
+
         sb.AppendLine(new string('-', 50));
 
         var maxKeyLength = reportable.Max(item => item.Key.Length) + 2;
         foreach (var item in reportable)
             sb.Append($"{item.Key}:".PadRight(maxKeyLength, ' ')).AppendLine(GetStringRepresentation(item.Value.Value).Replace(Environment.NewLine, $"{Environment.NewLine}{new string(' ', 4)}"));
-        
+
         sb.AppendLine(new string('-', 50));
 
         return sb.ToString();
@@ -115,17 +115,17 @@ public class TestFailureBuilder
     private static string GetStringRepresentation(object input)
     {
         // We can make this pretty later
-        
+
         if (input is null)
             return "<null>";
-        
-        if (input is DateTime dt) 
+
+        if (input is DateTime dt)
             return dt.ToString("s");
-        
-        if (input is DateTimeOffset dtO) 
+
+        if (input is DateTimeOffset dtO)
             return dtO.ToString("u");
-        
-        if (input.GetType().IsPrimitive) 
+
+        if (input.GetType().IsPrimitive)
             return input.ToString() ?? "<empty>";
 
         if (input is string str)

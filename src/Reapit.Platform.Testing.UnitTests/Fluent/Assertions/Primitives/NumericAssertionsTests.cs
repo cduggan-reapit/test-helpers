@@ -4,48 +4,48 @@ public class NumericAssertionsTests
 {
     [Fact]
     public void Should_InitializeForByte() => ((byte)0x01).Must();
-    
+
     [Fact]
     public void Should_InitializeForSignedByte() => ((sbyte)0x01).Must();
-    
+
     [Fact]
     public void Should_InitializeForShort() => ((short)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForUnsignedShort() => ((ushort)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForInt32() => 1.Must();
-    
+
     [Fact]
     public void Should_InitializeForUnsignedInt32() => ((uint)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForLong() => ((long)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForUnsignedLong() => ((ulong)1).Must();
 
-    [Fact] 
+    [Fact]
     public void Should_InitializeForFloat() => ((float)1).Must();
 
-    [Fact] 
+    [Fact]
     public void Should_InitializeForDouble() => ((double)1).Must();
-    
-    [Fact] 
+
+    [Fact]
     public void Should_InitializeForDecimal() => ((decimal)1).Must();
-    
+
     public class Be
     {
-        [Fact] 
+        [Fact]
         public void Should_Fail_WhenNotEqualToExpected()
         {
             const int subject = 77, expected = 99;
             var action = () => subject.Must().Be(expected);
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_NotFail_WhenEqualToExpected()
         {
             const int subject = 99, expected = 99;
@@ -56,15 +56,15 @@ public class NumericAssertionsTests
 
     public class NotBe
     {
-        [Fact] 
+        [Fact]
         public void Should_NotFail_WhenNotEqualToExpected()
         {
             const int subject = 77, expected = 99;
             var action = () => subject.Must().NotBe(expected);
             action.Must().NotThrow();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_Fail_WhenEqualToExpected()
         {
             const int subject = 99, expected = 99;
@@ -75,23 +75,23 @@ public class NumericAssertionsTests
 
     public class BePositive
     {
-        [Fact] 
+        [Fact]
         public void Should_Fail_WhenZero()
         {
             const int subject = 0;
             var action = () => subject.Must().BePositive();
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_Fail_WhenLessThanZero()
         {
             const int subject = -1;
             var action = () => subject.Must().BePositive();
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_NotFail_WhenGreaterThanZero()
         {
             const int subject = 9;
@@ -102,23 +102,23 @@ public class NumericAssertionsTests
 
     public class BeNegative
     {
-        [Fact] 
+        [Fact]
         public void Should_Fail_WhenZero()
         {
             const int subject = 0;
             var action = () => subject.Must().BeNegative();
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_NotFail_WhenLessThanZero()
         {
             const int subject = -1;
             var action = () => subject.Must().BeNegative();
             action.Must().NotThrow();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_Fail_WhenGreaterThanZero()
         {
             const int subject = 9;
@@ -129,23 +129,23 @@ public class NumericAssertionsTests
 
     public class BeLessThan
     {
-        [Fact] 
+        [Fact]
         public void Should_Fail_WhenSameAsComparison()
         {
             const int subject = 9, comparison = 9;
             var action = () => subject.Must().BeLessThan(comparison);
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_NotFail_WhenLessThanComparison()
         {
             const int subject = 8, comparison = 9;
             var action = () => subject.Must().BeLessThan(comparison);
             action.Must().NotThrow();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_Fail_WhenGreaterThanComparison()
         {
             const int subject = 10, comparison = 9;
@@ -156,23 +156,23 @@ public class NumericAssertionsTests
 
     public class BeLessThanOrEqualTo
     {
-        [Fact] 
+        [Fact]
         public void Should_NotFail_WhenSameAsComparison()
         {
             const int subject = 9, comparison = 9;
             var action = () => subject.Must().BeLessThanOrEqualTo(comparison);
             action.Must().NotThrow();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_NotFail_WhenLessThanComparison()
         {
             const int subject = 8, comparison = 9;
             var action = () => subject.Must().BeLessThanOrEqualTo(comparison);
             action.Must().NotThrow();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_Fail_WhenGreaterThanComparison()
         {
             const int subject = 10, comparison = 9;
@@ -183,23 +183,23 @@ public class NumericAssertionsTests
 
     public class BeGreaterThan
     {
-        [Fact] 
+        [Fact]
         public void Should_Fail_WhenSameAsComparison()
         {
             const int subject = 9, comparison = 9;
             var action = () => subject.Must().BeGreaterThan(comparison);
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_Fail_WhenLessThanComparison()
         {
             const int subject = 8, comparison = 9;
             var action = () => subject.Must().BeGreaterThan(comparison);
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_NotFail_WhenGreaterThanComparison()
         {
             const int subject = 10, comparison = 9;
@@ -210,23 +210,23 @@ public class NumericAssertionsTests
 
     public class BeGreaterThanOrEqualTo
     {
-        [Fact] 
+        [Fact]
         public void Should_NotFail_WhenSameAsComparison()
         {
             const int subject = 9, comparison = 9;
             var action = () => subject.Must().BeGreaterThanOrEqualTo(comparison);
             action.Must().NotThrow();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_Fail_WhenLessThanComparison()
         {
             const int subject = 8, comparison = 9;
             var action = () => subject.Must().BeGreaterThanOrEqualTo(comparison);
             action.Must().Throw();
         }
-        
-        [Fact] 
+
+        [Fact]
         public void Should_NotFail_WhenGreaterThanComparison()
         {
             const int subject = 10, comparison = 9;

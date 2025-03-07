@@ -9,7 +9,7 @@ public static class MockJsonWebKeyFactoryTests
         [Fact]
         public void Should_ReturnJsonWebKeys_WithRsaKey()
         {
-            var jwk = MockJsonWebKeyFactory.Create("example", out var rsa);
+            var jwk = MockJsonWebKeyFactory.Create("example", out _);
             Assert.Equal("example", jwk.Kid);
         }
     }

@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Reapit.Platform.Common.Extensions;
+﻿using Reapit.Platform.Common.Extensions;
+using System.Text;
 
 namespace Reapit.Platform.Testing.Extensions;
 

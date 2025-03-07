@@ -1,6 +1,6 @@
-﻿using System.Linq.Expressions;
-using Reapit.Platform.Testing.Fluent.Core;
+﻿using Reapit.Platform.Testing.Fluent.Core;
 using Reapit.Platform.Testing.Fluent.Failures;
+using System.Linq.Expressions;
 
 namespace Reapit.Platform.Testing.Fluent.Assertions.Abstract;
 
@@ -23,7 +23,7 @@ public abstract class ReferenceTypeAssertions<TSubject, TAssertions>(TSubject su
     {
         if (Subject is null)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("actual", Subject)
             .SetMessageTemplate("Expected {context} to be null, but found {actual}.")
@@ -35,7 +35,7 @@ public abstract class ReferenceTypeAssertions<TSubject, TAssertions>(TSubject su
     {
         if (Subject is not null)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("actual", Subject)
             .SetMessageTemplate("Expected {context} not to be null.")
@@ -46,52 +46,52 @@ public abstract class ReferenceTypeAssertions<TSubject, TAssertions>(TSubject su
     /// <typeparam name="T">The expected type.</typeparam>
     public AndOperator<TAssertions> BeOfType<T>()
     {
-        if(Subject is not null && Subject.GetType() == typeof(T))
+        if (Subject is not null && Subject.GetType() == typeof(T))
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("expected", typeof(T).Name)
             .SetContextData("actual", Subject?.GetType().Name)
             .SetMessageTemplate("Expected {context} to be {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is not an instance of <typeparamref name="T"/>.</summary>
     /// <typeparam name="T">The type against which the subject is compared.</typeparam>
     /// <remarks>Will not cause tests to fail if subject is null.</remarks>
     public AndOperator<TAssertions> NotBeOfType<T>()
     {
-        if(Subject is null || Subject.GetType() != typeof(T))
+        if (Subject is null || Subject.GetType() != typeof(T))
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("expected", typeof(T).Name)
             .SetMessageTemplate("Expected {context} not to be {expected}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is an instance of <typeparamref name="T"/> or a derived type.</summary>
     /// <typeparam name="T">The expected type.</typeparam>
     public AndOperator<TAssertions> BeAssignableTo<T>()
     {
-        if(Subject is T)
+        if (Subject is T)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("expected", typeof(T).Name)
             .SetContextData("actual", Subject?.GetType().Name)
             .SetMessageTemplate("Expected {context} to be assignable to {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is not an instance of <typeparamref name="T"/> or a derived type.</summary>
     /// <typeparam name="T">The type against which the subject is compared.</typeparam>
     /// <remarks>Will not cause tests to fail if subject is null.</remarks>
     public AndOperator<TAssertions> NotBeAssignableTo<T>()
     {
-        if(Subject is not T)
+        if (Subject is not T)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("expected", typeof(T).Name)
             .SetContextData("actual", Subject?.GetType().Name)
@@ -103,15 +103,15 @@ public abstract class ReferenceTypeAssertions<TSubject, TAssertions>(TSubject su
     /// <param name="predicate">The predicate which must be satisfied.</param>
     public AndOperator<TAssertions> Match(Expression<Func<TSubject, bool>> predicate)
         => Match<TSubject>(predicate);
-    
+
     /// <summary>Asserts that the subject matches the given predicate.</summary>
     /// <param name="predicate">The predicate which must be satisfied.</param>
     public AndOperator<TAssertions> Match<T>(Expression<Func<T, bool>> predicate)
         where T : TSubject
     {
-        if(Subject is not null && predicate.Compile()((T)Subject))
+        if (Subject is not null && predicate.Compile()((T)Subject))
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         throw TestFailureBuilder.CreateForContext(Context)
             .SetContextData("actual", Subject)
             .SetMessageTemplate("Expected {context} to satisfy the predicate, but found {actual}.")

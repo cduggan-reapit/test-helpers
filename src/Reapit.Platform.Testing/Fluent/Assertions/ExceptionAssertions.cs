@@ -28,20 +28,20 @@ public class ExceptionAssertions<T, TAssertions>
 {
     /// <summary>The assertion context name.</summary>
     private const string Context = "exception";
-    
+
     /// <summary>The subject of assertions.</summary>
     private T Subject { get; }
 
     /// <summary>Initializes a new instance of the <see cref="ExceptionAssertions{T}"/> class.</summary>
     /// <param name="subject">The nullable assertion subject.</param>
-    protected ExceptionAssertions(T subject) 
+    protected ExceptionAssertions(T subject)
         => Subject = subject;
 
     /// <summary>Asserts that the exception message matches the expected value.</summary>
     /// <param name="expected">The expected message.</param>
     public ExceptionAssertions<T, TAssertions> WithMessage(string expected)
         => WithMessage(expected, StringComparison.OrdinalIgnoreCase);
-    
+
     /// <summary>Asserts that the exception message matches the expected value.</summary>
     /// <param name="expected">The expected message.</param>
     /// <param name="comparison">The type of string comparison to apply when evaluating message equality.</param>
@@ -56,7 +56,7 @@ public class ExceptionAssertions<T, TAssertions>
             .SetContextData("actual", Subject?.Message)
             .Build();
     }
-    
+
     /// <summary>Asserts that the exception message matches the expected value.</summary>
     /// <typeparam name="TInnerException">The expected inner exception type.</typeparam>
     public ExceptionAssertions<TInnerException> WithInnerException<TInnerException>()

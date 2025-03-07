@@ -6,38 +6,38 @@ public class NullableNumericAssertionsTests
      * NullableNumericAssertions is an extension of NumericAssertions.  For inherited methods, this class will only test
      * the null case as this cannot be exercised in the NumericAssertionsTests class.
      */
-    
+
     [Fact]
     public void Should_InitializeForByte() => ((byte?)0x01).Must();
-    
+
     [Fact]
     public void Should_InitializeForSignedByte() => ((sbyte?)0x01).Must();
-    
+
     [Fact]
     public void Should_InitializeForShort() => ((short?)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForUnsignedShort() => ((ushort?)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForInt32() => ((int?)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForUnsignedInt32() => ((uint?)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForLong() => ((long?)1).Must();
-    
+
     [Fact]
     public void Should_InitializeForUnsignedLong() => ((ulong?)1).Must();
 
-    [Fact] 
+    [Fact]
     public void Should_InitializeForFloat() => ((float?)1).Must();
 
-    [Fact] 
+    [Fact]
     public void Should_InitializeForDouble() => ((double?)1).Must();
-    
-    [Fact] 
+
+    [Fact]
     public void Should_InitializeForDecimal() => ((decimal?)1).Must();
 
     public class Be
@@ -49,7 +49,7 @@ public class NullableNumericAssertionsTests
             var action = () => subject.Must().Be(17);
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectIsNotNull_AndValueMatches()
         {
@@ -57,7 +57,7 @@ public class NullableNumericAssertionsTests
             var action = () => subject.Must().Be((int?)17);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectIsNotNull_AndValueDoesNotMatch()
         {
@@ -65,7 +65,7 @@ public class NullableNumericAssertionsTests
             var action = () => subject.Must().Be((int?)17);
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectIsNull_AndComparisonIsNull()
         {
@@ -84,7 +84,7 @@ public class NullableNumericAssertionsTests
             var action = () => subject.Must().NotBe(17);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectIsNotNull_AndValueMatches()
         {
@@ -92,7 +92,7 @@ public class NullableNumericAssertionsTests
             var action = () => subject.Must().NotBe((int?)17);
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectIsNotNull_AndValueDoesNotMatch()
         {
@@ -100,7 +100,7 @@ public class NullableNumericAssertionsTests
             var action = () => subject.Must().NotBe((int?)17);
             action.Must().NotThrow();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenSubjectIsNull_AndComparisonIsNull()
         {
@@ -208,7 +208,7 @@ public class NullableNumericAssertionsTests
             var action = () => subject.Must().Match(i => i == 72);
             action.Must().Throw();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenSubjectSatisfiesPredicate()
         {
@@ -244,7 +244,7 @@ public class NullableNumericAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     public class NotHaveValue
     {
         [Fact]

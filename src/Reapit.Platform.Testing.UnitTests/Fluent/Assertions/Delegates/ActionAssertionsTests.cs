@@ -38,7 +38,7 @@ public static class ActionAssertionsTests
             var action = () => subject.Must().Throw<ArgumentException>();
             action.Fails();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenDifferentExceptionThrown()
         {
@@ -54,7 +54,7 @@ public static class ActionAssertionsTests
             var action = () => subject.Must().Throw<ArgumentNullException>();
             action.Passes();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenDerivedExceptionThrown()
         {
@@ -81,7 +81,7 @@ public static class ActionAssertionsTests
             var action = () => subject.Must().ThrowExactly<ArgumentNullException>();
             action.Passes();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenDerivedExceptionThrown()
         {
@@ -90,7 +90,7 @@ public static class ActionAssertionsTests
             action.Fails();
         }
     }
-    
+
     public class NotThrow
     {
         [Fact]
@@ -127,7 +127,7 @@ public static class ActionAssertionsTests
             var action = () => subject.Must().NotThrow<ArgumentNullException>();
             action.Fails();
         }
-        
+
         [Fact]
         public void Should_Fail_WhenDerivedExceptionThrown()
         {
@@ -154,7 +154,7 @@ public static class ActionAssertionsTests
             var action = () => subject.Must().NotThrowExactly<ArgumentNullException>();
             action.Fails();
         }
-        
+
         [Fact]
         public void Should_NotFail_WhenDerivedExceptionThrown()
         {
@@ -163,7 +163,7 @@ public static class ActionAssertionsTests
             action.Passes();
         }
     }
-    
+
     /*
      * Private Methods
      */
@@ -179,14 +179,14 @@ public static class ActionAssertionsTests
     private static void Passes<TException>(this Func<ExceptionAssertions<TException>> action)
         where TException : Exception
         => action();
-    
+
     private static void Passes(this Func<AndOperator<ActionAssertions>> action)
         => action();
 
     private static void Fails<TException>(this Func<ExceptionAssertions<TException>> action)
         where TException : Exception
         => Assert.Throws<XunitException>(action);
-    
+
     private static void Fails(this Func<AndOperator<ActionAssertions>> action)
         => Assert.Throws<XunitException>(action);
 }

@@ -1,6 +1,6 @@
-﻿using System.Linq.Expressions;
-using Reapit.Platform.Testing.Fluent.Core;
+﻿using Reapit.Platform.Testing.Fluent.Core;
 using Reapit.Platform.Testing.Fluent.Failures;
+using System.Linq.Expressions;
 
 namespace Reapit.Platform.Testing.Fluent.Assertions.Primitives;
 
@@ -21,18 +21,18 @@ public class DateTimeOffsetAssertions<TAssertions>
 
     /// <summary>The subject of assertions.</summary>
     protected DateTimeOffset? Subject { get; }
-    
+
     /// <summary>Initializes a new instance of the <see cref="DateTimeOffsetAssertions"/> class.</summary>
     /// <param name="subject">The nullable assertion subject.</param>
     protected DateTimeOffsetAssertions(DateTimeOffset? subject)
         => Subject = subject;
-    
+
     /// <summary>Initializes a new instance of the <see cref="DateTimeOffsetAssertions"/> class.</summary>
     /// <param name="subject">The assertion subject.</param>
     protected DateTimeOffsetAssertions(DateTimeOffset subject) : this((DateTimeOffset?)subject)
     {
     }
-    
+
     /// <summary>Asserts that the subject is the same as the <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The expected value.</param>
     public AndOperator<TAssertions> Be(DateTimeOffset compareTo)
@@ -46,14 +46,14 @@ public class DateTimeOffsetAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is the same as the <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The expected value.</param>
     public AndOperator<TAssertions> Be(DateTimeOffset? compareTo)
     {
-        if(Subject is null && compareTo is null)
+        if (Subject is null && compareTo is null)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
+
         // If compareTo is null then Subject must be null, otherwise the values must be the same.
         if (compareTo is { } value ? Subject?.CompareTo(value) == 0 : Subject is null)
             return new AndOperator<TAssertions>((TAssertions)this);
@@ -102,10 +102,10 @@ public class DateTimeOffsetAssertions<TAssertions>
     {
         if (precision < TimeSpan.Zero)
             throw new ArgumentException("Precision cannot be a negative value.", nameof(precision));
-        
+
         var minTicks = (compareTo - DateTimeOffset.MinValue).Ticks;
         var maxTicks = (DateTimeOffset.MaxValue - compareTo).Ticks;
-        
+
         var minValue = compareTo.AddTicks(-Math.Min(precision.Ticks, minTicks));
         var maxValue = compareTo.AddTicks(Math.Min(precision.Ticks, maxTicks));
 
@@ -119,7 +119,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be within {precision} of {expected}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is not within a defined TimeSpan of the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value against which the subject is compared.</param>
     /// <param name="precision">The minimum amount of time by which the subject must differ.</param>
@@ -128,10 +128,10 @@ public class DateTimeOffsetAssertions<TAssertions>
     {
         if (precision < TimeSpan.Zero)
             throw new ArgumentException("Precision cannot be a negative value.", nameof(precision));
-        
+
         var minTicks = (compareTo - DateTimeOffset.MinValue).Ticks;
         var maxTicks = (DateTimeOffset.MaxValue - compareTo).Ticks;
-        
+
         var minValue = compareTo.AddTicks(-Math.Min(precision.Ticks, minTicks));
         var maxValue = compareTo.AddTicks(Math.Min(precision.Ticks, maxTicks));
 
@@ -159,7 +159,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be after {compareTo}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is equal to or greater than the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value which the subject must be equal to or greater than.</param>
     public AndOperator<TAssertions> BeOnOrAfter(DateTimeOffset compareTo)
@@ -173,7 +173,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be on or after {compareTo}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is less than the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value which the subject must be less than.</param>
     public AndOperator<TAssertions> BeBefore(DateTimeOffset compareTo)
@@ -187,7 +187,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be before {compareTo}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject is equal to or less than the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value which the subject must be equal to or less than.</param>
     public AndOperator<TAssertions> BeOnOrBefore(DateTimeOffset compareTo)
@@ -201,12 +201,12 @@ public class DateTimeOffsetAssertions<TAssertions>
             .SetMessageTemplate("Expected {context} to be on or before {compareTo}, but found {actual}.")
             .Build();
     }
-    
+
     /// <summary>Asserts that the subject matches the given predicate.</summary>
     /// <param name="predicate">The predicate which must be satisfied.</param>
     public AndOperator<TAssertions> Match(Expression<Func<DateTimeOffset, bool>> predicate)
     {
-        if(Subject is { } subject && predicate.Compile()(subject))
+        if (Subject is { } subject && predicate.Compile()(subject))
             return new AndOperator<TAssertions>((TAssertions)this);
 
         throw TestFailureBuilder.CreateForContext(Context)

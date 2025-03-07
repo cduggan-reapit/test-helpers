@@ -29,34 +29,34 @@ public static class HttpRequestMessageHelperTests
             const string key = "x-header-name", value = "x-header-value";
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Connect, "https://test")
                 .SetHeader(key, value);
-            
+
             Assert.Equal([value], message.Headers.GetValues(key));
         }
-        
+
         [Fact]
         public void Should_ReplaceHeader_WhenStringProvided()
         {
             const string key = "x-header-name", value = "x-header-value";
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Connect, "https://test")
                 .SetHeader(key, "initial");
-            Assert.Equal(["initial"], message.Headers.GetValues(key));    
-                
+            Assert.Equal(["initial"], message.Headers.GetValues(key));
+
             message.SetHeader(key, value);
             Assert.Equal([value], message.Headers.GetValues(key));
         }
-        
+
         [Fact]
         public void Should_RemoveHeader_WhenNullStringProvided()
         {
             const string key = "x-header-name";
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Connect, "https://test")
                 .SetHeader(key, "initial");
-            Assert.Equal(["initial"], message.Headers.GetValues(key));    
-                
+            Assert.Equal(["initial"], message.Headers.GetValues(key));
+
             message.SetHeader(key, null as string);
             Assert.False(message.Headers.Contains(key));
         }
-        
+
         [Fact]
         public void Should_SetHeader_WhenCollectionProvided()
         {
@@ -64,10 +64,10 @@ public static class HttpRequestMessageHelperTests
             var value = new[] { "x-1", "x-2", "x-3" };
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Connect, "https://test")
                 .SetHeader(key, value);
-            
+
             Assert.Equal(value, message.Headers.GetValues(key));
         }
-        
+
         [Fact]
         public void Should_ReplaceHeader_WhenCollectionProvided()
         {
@@ -75,20 +75,20 @@ public static class HttpRequestMessageHelperTests
             var value = new[] { "x-1", "x-2", "x-3" };
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Connect, "https://test")
                 .SetHeader(key, "initial");
-            Assert.Equal(["initial"], message.Headers.GetValues(key));    
-                
+            Assert.Equal(["initial"], message.Headers.GetValues(key));
+
             message.SetHeader(key, value);
             Assert.Equal(value, message.Headers.GetValues(key));
         }
-        
+
         [Fact]
         public void Should_RemoveHeader_WhenNullCollectionProvided()
         {
             const string key = "x-header-name";
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Connect, "https://test")
                 .SetHeader(key, "initial");
-            Assert.Equal(["initial"], message.Headers.GetValues(key));    
-                
+            Assert.Equal(["initial"], message.Headers.GetValues(key));
+
             message.SetHeader(key, null as string[]);
             Assert.False(message.Headers.Contains(key));
         }
@@ -96,13 +96,13 @@ public static class HttpRequestMessageHelperTests
 
     public class SetStringContent
     {
-        private record ExampleModel(string Property);
-        
+        private sealed record ExampleModel(string Property);
+
         [Fact]
         public async Task Should_SetContent_WhenDataProvided()
         {
             var content = new ExampleModel("value");
-            
+
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Post, "https://test")
                 .SetStringContent(content);
 
@@ -111,29 +111,29 @@ public static class HttpRequestMessageHelperTests
             Assert.Equivalent(content, actual);
             Assert.Equal(content.Property, actual?.Property);
         }
-        
+
         [Fact]
         public async Task Should_ReplaceContent_WhenDataProvided()
         {
             var firstContent = new ExampleModel("value");
             var secondContent = new ExampleModel("second");
-            
+
             // Set it up and make sure it's set
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Post, "https://test").SetStringContent(firstContent);
             var firstActual = await (await message.Content!.ReadAsStreamAsync()).RewindAndReadAsJsonAsync<ExampleModel>();
             Assert.Equivalent(firstContent, firstActual);
-            
+
             // SetStringContent again and make sure it's changed
             message.SetStringContent(secondContent);
             var secondActual = await (await message.Content!.ReadAsStreamAsync()).RewindAndReadAsJsonAsync<ExampleModel>();
             Assert.Equivalent(secondContent, secondActual);
         }
-        
+
         [Fact]
         public async Task Should_RemoveContent_WhenNullProvided()
         {
             var firstContent = new ExampleModel("value");
-            
+
             // Set it up and make sure it's set
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Post, "https://test").SetStringContent(firstContent);
             var firstActual = await (await message.Content!.ReadAsStreamAsync()).RewindAndReadAsJsonAsync<ExampleModel>();
@@ -143,7 +143,7 @@ public static class HttpRequestMessageHelperTests
             Assert.Null(message.Content);
         }
     }
-    
+
     public class SetFormContent
     {
         [Fact]
@@ -157,30 +157,30 @@ public static class HttpRequestMessageHelperTests
             var actual = (await stream.RewindAndReadAsFormAsync())!.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
             Assert.Equivalent(content, actual);
         }
-        
+
         [Fact]
         public async Task Should_ReplaceContent_WhenDataProvided()
         {
             var firstContent = new Dictionary<string, string> { { "Property", "first" } };
             var secondContent = new Dictionary<string, string> { { "Property", "second" } };
-            
+
             // Set it up and make sure it's set
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Post, "https://test").SetFormContent(firstContent);
             var actual = await (await message.Content!.ReadAsStreamAsync()).RewindAndReadAsFormAsync();
             var actualDict = actual!.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
             Assert.Equivalent(firstContent, actualDict);
-            
+
             message.SetFormContent(secondContent);
             actual = await (await message.Content!.ReadAsStreamAsync()).RewindAndReadAsFormAsync();
             actualDict = actual!.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
             Assert.Equivalent(secondContent, actualDict);
         }
-        
+
         [Fact]
         public async Task Should_RemoveContent_WhenNullProvided()
         {
             var firstContent = new Dictionary<string, string> { { "Property", "first" } };
-            
+
             // Set it up and make sure it's set
             var message = HttpRequestMessageHelper.CreateRequest(HttpMethod.Post, "https://test").SetFormContent(firstContent);
             var firstActual = await (await message.Content!.ReadAsStreamAsync()).RewindAndReadAsFormAsync();

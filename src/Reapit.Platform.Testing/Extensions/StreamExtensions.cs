@@ -1,7 +1,7 @@
-﻿using System.IO.Pipelines;
-using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
 using Reapit.Platform.Common.Extensions;
+using System.IO.Pipelines;
 
 namespace Reapit.Platform.Testing.Extensions;
 
@@ -18,18 +18,18 @@ public static class StreamExtensions
 
         // Read...
         var content = await new StreamReader(stream).ReadToEndAsync();
-        
+
         // AsJson!
         return content.Deserialize<T>();
     }
-    
+
     /// <summary>Rewinds and reads the contents of a stream into a dictionary representing the body of a x-www-form-urlencoded request.</summary>
     /// <param name="stream">The stream.</param>
     public static async Task<Dictionary<string, StringValues>> RewindAndReadAsFormAsync(this Stream stream)
     {
         if (stream.Length == 0)
             return null;
-        
+
         var reader = new FormPipeReader(PipeReader.Create(stream));
         return await reader.ReadFormAsync();
     }

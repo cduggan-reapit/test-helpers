@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
     public static void RemoveServiceForType<TService>(this IServiceCollection services)
     {
         var service = services.SingleOrDefault(s => s.ServiceType == typeof(TService));
-        if(service is not null)
+        if (service is not null)
             services.Remove(service);
     }
 }

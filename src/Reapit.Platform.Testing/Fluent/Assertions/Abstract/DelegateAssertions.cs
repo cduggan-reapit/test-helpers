@@ -8,7 +8,7 @@ namespace Reapit.Platform.Testing.Fluent.Assertions.Abstract;
 /// <typeparam name="TDelegate">The type of delegate (e.g. Action, Func{T}).</typeparam>
 /// <typeparam name="TAssertions">The type of assertions to return in continuation objects.</typeparam>
 [DebuggerNonUserCode]
-public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subject) 
+public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subject)
     where TDelegate : Delegate
     where TAssertions : DelegateAssertions<TDelegate, TAssertions>
 {
@@ -17,10 +17,10 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
 
     /// <summary>The subject of assertions.</summary>
     protected TDelegate Subject { get; } = subject;
-    
+
     /// <summary>Method used to test delegate execution.</summary>
     protected abstract void InvokeDelegate();
-    
+
     /// <summary>Asserts that execution of the subject delegate raises an exception.</summary>
     public ExceptionAssertions<Exception> Throw()
     {
@@ -32,7 +32,7 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
             .SetMessageTemplate("Expected {context} to throw an exception.")
             .Build();
     }
-    
+
     /// <summary>Asserts that execution of the subject delegate raises an exception of type <typeparamref name="TException"/>.</summary>
     /// <typeparam name="TException">The expected exception type.</typeparam>
     /// <remarks>
@@ -43,8 +43,8 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
         where TException : Exception
     {
         var exception = InvokeActualWithInterception();
-        
-        if(exception is TException typedException)
+
+        if (exception is TException typedException)
             return new ExceptionAssertions<TException>(typedException);
 
         var failure = TestFailureBuilder.CreateForContext(Context)
@@ -58,7 +58,7 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
             .SetContextData("actual", exception.GetType().Name)
             .Build();
     }
-    
+
     /// <summary>Asserts that execution of the subject delegate raises an exception of type <typeparamref name="TException"/>.</summary>
     /// <typeparam name="TException">The expected exception type.</typeparam>
     /// <remarks>
@@ -69,8 +69,8 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
         where TException : Exception
     {
         var exception = InvokeActualWithInterception();
-        
-        if(exception is TException typedException && exception.GetType() == typeof(TException))
+
+        if (exception is TException typedException && exception.GetType() == typeof(TException))
             return new ExceptionAssertions<TException>(typedException);
 
         var failure = TestFailureBuilder.CreateForContext(Context)
@@ -109,8 +109,8 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
         where TException : Exception
     {
         var exception = InvokeActualWithInterception();
-        
-        if(exception is not TException)
+
+        if (exception is not TException)
             return new AndOperator<TAssertions>((TAssertions)this);
 
         throw TestFailureBuilder.CreateForContext(Context)
@@ -120,7 +120,7 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
             .SetContextData("message", exception?.Message)
             .Build();
     }
-    
+
     /// <summary>Asserts that execution of the subject delegate raises an exception of type <typeparamref name="TException"/>.</summary>
     /// <typeparam name="TException">The expected exception type.</typeparam>
     /// <remarks>
@@ -131,11 +131,11 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
         where TException : Exception
     {
         var exception = InvokeActualWithInterception();
-        
-        if(exception is null)
+
+        if (exception is null)
             return new AndOperator<TAssertions>((TAssertions)this);
-        
-        if(exception.GetType() != typeof(TException))
+
+        if (exception.GetType() != typeof(TException))
             return new AndOperator<TAssertions>((TAssertions)this);
 
         throw TestFailureBuilder.CreateForContext(Context)
@@ -145,7 +145,7 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
             .SetContextData("message", exception?.Message)
             .Build();
     }
-    
+
     /// <summary>Invokes the subject action.</summary>
     private Exception InvokeActualWithInterception()
     {

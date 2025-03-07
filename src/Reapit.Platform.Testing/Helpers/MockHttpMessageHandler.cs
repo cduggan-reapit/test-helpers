@@ -1,5 +1,5 @@
-﻿using System.Net;
-using Reapit.Platform.Common.Extensions;
+﻿using Reapit.Platform.Common.Extensions;
+using System.Net;
 
 namespace Reapit.Platform.Testing.Helpers;
 
@@ -13,12 +13,12 @@ public class MockHttpMessageHandler : HttpMessageHandler
     /// The URL of the most recent request received by the message handler.
     /// </summary>
     public string LastRequestUrl { get; private set; }
-    
+
     /// <summary>
     /// The number of requests received by the message handler.
     /// </summary>
     public int RequestCount { get; private set; }
-    
+
     /// <summary>Initializes a new instance of the <see cref="MockHttpMessageHandler"/> class.</summary>
     /// <param name="statusCode">The status code that the handler will return.</param>
     /// <param name="response">The body of the response that the handler will return.</param>
@@ -38,7 +38,7 @@ public class MockHttpMessageHandler : HttpMessageHandler
                 break;
         }
     }
-    
+
     /// <inheritdoc />
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
@@ -46,9 +46,9 @@ public class MockHttpMessageHandler : HttpMessageHandler
         if (_response is not null)
             message.Content = new StringContent(_response);
 
-        if(request.RequestUri != null)
+        if (request.RequestUri != null)
             LastRequestUrl = request.RequestUri.ToString();
-        
+
         RequestCount++;
         return Task.FromResult(message);
     }

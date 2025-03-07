@@ -12,7 +12,7 @@ public static class JsonWebTokenFactoryTests
     private const string Organisation = "organisation";
     private const string Gty = "authorization_code";
     private const string Scope = "scope.one scope.two scope.three";
-    
+
     public class Create
     {
         [Fact]
@@ -35,10 +35,10 @@ public static class JsonWebTokenFactoryTests
             var handler = new JsonWebTokenHandler();
             var actual = handler.ReadJsonWebToken(token);
             var actualClaims = actual.Claims.ToDictionary(claim => claim.Type, claim => claim.Value);
-            
+
             // Everything in `claims` should be in the token claim collection.
             Assert.All(claims, claim => Assert.Equal(claim.Value, actualClaims[claim.Key]));
-            
+
             // Last: check the token's invalid (as the signature will be bad):
             var validationConfiguration = new TokenValidationParameters
             {
@@ -52,7 +52,7 @@ public static class JsonWebTokenFactoryTests
             var result = await handler.ValidateTokenAsync(token, validationConfiguration);
             Assert.IsType<SecurityTokenInvalidSignatureException>(result.Exception);
         }
-        
+
         [Fact]
         public async Task Should_CreateJwt_WithSigningCredentials()
         {
@@ -78,12 +78,12 @@ public static class JsonWebTokenFactoryTests
             // Read the token (manually)
             var handler = new JsonWebTokenHandler();
             var actual = handler.ReadJsonWebToken(token);
-            
+
             var actualClaims = actual.Claims.ToDictionary(claim => claim.Type, claim => claim.Value);
-            
+
             // Everything in `claims` should be in the token claim collection.
             Assert.All(claims, claim => Assert.Equal(claim.Value, actualClaims[claim.Key]));
-            
+
             // Last: check the token's valid:
             var validationConfiguration = new TokenValidationParameters
             {
@@ -127,7 +127,7 @@ public static class JsonWebTokenFactoryTests
             // Read the token manually
             var handler = new JsonWebTokenHandler();
             var expected = handler.ReadJsonWebToken(token);
-            
+
             // Read the token with the helper method
             var actual = MockJsonWebTokenFactory.Read(token);
             Assert.Equivalent(expected, actual);
