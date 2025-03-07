@@ -4,7 +4,7 @@ public static class BooleanAssertionsTests
 {
     private const bool TrueValue = true;
     private const bool FalseValue = false;
-    private static readonly bool? NullValue = null;
+    private static bool? NullValue => null;
     private static readonly bool? NullableTrueValue = true;
     private static readonly bool? NullableFalseValue = false;
 

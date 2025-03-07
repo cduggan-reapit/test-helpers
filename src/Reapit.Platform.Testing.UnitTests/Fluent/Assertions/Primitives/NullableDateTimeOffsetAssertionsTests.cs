@@ -2,7 +2,7 @@
 
 public static class NullableDateTimeOffsetAssertionsTests
 {
-    private static readonly DateTimeOffset? NullDate = null;
+    private static DateTimeOffset? NullDate => null;
 
     /*
      * NullableDateTimeOffsetAssertions is an extension of DateTimeOffsetAssertions.  For inherited methods, this class

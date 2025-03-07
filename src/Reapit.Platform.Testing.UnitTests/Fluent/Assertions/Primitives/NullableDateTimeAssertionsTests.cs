@@ -2,7 +2,8 @@
 
 public static class NullableDateTimeAssertionsTests
 {
-    private static readonly DateTime? NullDate = null;
+    private static DateTime? NullDate => null;
+    
     /*
      * NullableDateTimeAssertions is an extension of DateTimeAssertions.  For inherited methods, this class will only
      * test the null case as this cannot be exercised in the DateTimeAssertions class.

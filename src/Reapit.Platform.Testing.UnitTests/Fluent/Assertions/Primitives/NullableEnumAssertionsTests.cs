@@ -71,11 +71,11 @@ public static class NullableEnumAssertionsTests
             action.Must().NotThrow();
         }
     }
-    
+
     /*
      * Inherited methods
      */
-    
+
     public class Be
     {
         [Fact]

@@ -3,7 +3,7 @@
 public static class NullableBooleanAssertionsTests
 {
     private static readonly bool? TrueValue = true;
-    private static readonly bool? NullValue = null;
+    private static bool? NullValue => null;
 
     public class HaveValue
     {
