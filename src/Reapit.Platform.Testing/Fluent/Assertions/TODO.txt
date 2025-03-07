@@ -1,6 +1,6 @@
 structs
 ✅ Boolean & Nullable Boolean
-Enum & Nullable Enum
+✅ Enum & Nullable Enum
 
 delegates
 async func (Task, Task<T>)
