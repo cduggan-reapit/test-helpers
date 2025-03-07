@@ -4,12 +4,12 @@ using Reapit.Platform.Testing.Fluent.Failures;
 
 namespace Reapit.Platform.Testing.Fluent.Assertions.Primitives;
 
-/// <summary>Contains assertions for reference types.</summary>
+/// <summary>Contains assertions for strings.</summary>
 /// <param name="subject">The assertion subject.</param>
 [DebuggerNonUserCode]
 public class StringAssertions(string subject) : StringAssertions<StringAssertions>(subject);
 
-/// <summary>Contains assertions for reference types.</summary>
+/// <summary>Contains assertions for strings.</summary>
 /// <param name="subject">The assertion subject.</param>
 /// <typeparam name="TAssertions">The type of assertions to return in continuation objects.</typeparam>
 [DebuggerNonUserCode]
