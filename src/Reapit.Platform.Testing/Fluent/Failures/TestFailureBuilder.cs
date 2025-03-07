@@ -13,13 +13,13 @@ public class TestFailureBuilder
     
     /// <summary>The test context.</summary>
     // ReSharper disable once UnusedAutoPropertyAccessor.Global
-    public string? Context { get; private set; }
+    public string Context { get; private set; }
     
     /// <summary>The error message template.</summary>
-    private string? MessageTemplate { get; set; }
+    private string MessageTemplate { get; set; }
     
     /// <summary>The inner exception to include in built exceptions.</summary>
-    private Exception? InnerException { get; set; }
+    private Exception InnerException { get; set; }
 
     /// <summary>The context data collection.</summary>
     /// <remarks>
@@ -45,7 +45,7 @@ public class TestFailureBuilder
     /// <param name="value">The value of the context data entry.</param>
     /// <param name="isReportable">Flag indicating whether the value should be included in the context data output.</param>
     /// <returns>A reference to the TestFailureBuilder after the operation has been performed.</returns>
-    public TestFailureBuilder SetContextData(string key, object? value, bool isReportable = true)
+    public TestFailureBuilder SetContextData(string key, object value, bool isReportable = true)
     {
         ContextData.Add(key, new TestFailureContextData(value, isReportable));
         return this;
@@ -112,7 +112,7 @@ public class TestFailureBuilder
         return sb.ToString();
     }
 
-    private static string GetStringRepresentation(object? input)
+    private static string GetStringRepresentation(object input)
     {
         // We can make this pretty later
         

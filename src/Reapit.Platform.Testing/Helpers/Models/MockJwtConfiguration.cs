@@ -10,8 +10,8 @@ namespace Reapit.Platform.Testing.Helpers.Models;
 public record MockJwtConfiguration(
     string Audience,
     string Issuer,
-    SigningCredentials? SigningCredentials = null,
-    Dictionary<string, object>? Claims = null)
+    SigningCredentials SigningCredentials = null,
+    Dictionary<string, object> Claims = null)
 {
     internal const string DefaultAudience = "http://test.example.net/audience";
     internal const string DefaultIssuer = "http://test.example.net/issuer";

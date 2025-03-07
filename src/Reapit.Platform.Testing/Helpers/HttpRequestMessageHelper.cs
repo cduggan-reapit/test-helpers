@@ -20,7 +20,7 @@ public static class HttpRequestMessageHelper
     /// <para>Calling this method with a key that is in use will replace any existing header value.</para>
     /// <para>Calling this method with a null value will remove any existing header value.</para>
     /// </remarks>
-    public static HttpRequestMessage SetHeader(this HttpRequestMessage request, string header, string? value)
+    public static HttpRequestMessage SetHeader(this HttpRequestMessage request, string header, string value)
     {
         if (request.Headers.Contains(header))
             request.Headers.Remove(header);
@@ -40,7 +40,7 @@ public static class HttpRequestMessageHelper
     /// <para>Calling this method with a key that is in use will replace any existing header value.</para>
     /// <para>Calling this method with a null value will remove any existing header value.</para>
     /// </remarks>
-    public static HttpRequestMessage SetHeader(this HttpRequestMessage request, string header, params string[]? value)
+    public static HttpRequestMessage SetHeader(this HttpRequestMessage request, string header, params string[] value)
     {
         if (request.Headers.Contains(header))
             request.Headers.Remove(header);
@@ -60,7 +60,7 @@ public static class HttpRequestMessageHelper
     /// <para>Calling this method will replace any content previously added to the message.</para>
     /// <para>Calling this method with null content will remove any content previously added to the message.</para>
     /// </remarks>
-    public static HttpRequestMessage SetStringContent(this HttpRequestMessage request, object? content)
+    public static HttpRequestMessage SetStringContent(this HttpRequestMessage request, object content)
     {
         request.Content = null;
         
@@ -78,7 +78,7 @@ public static class HttpRequestMessageHelper
     /// <para>Calling this method will replace any content previously added to the message.</para>
     /// <para>Calling this method with null content will remove any content previously added to the message.</para>
     /// </remarks>
-    public static HttpRequestMessage SetFormContent(this HttpRequestMessage request, Dictionary<string,string>? content)
+    public static HttpRequestMessage SetFormContent(this HttpRequestMessage request, Dictionary<string,string> content)
     {
         request.Content = null;
         

@@ -147,7 +147,7 @@ public abstract class DelegateAssertions<TDelegate, TAssertions>(TDelegate subje
     }
     
     /// <summary>Invokes the subject action.</summary>
-    private Exception? InvokeActualWithInterception()
+    private Exception InvokeActualWithInterception()
     {
         try
         {

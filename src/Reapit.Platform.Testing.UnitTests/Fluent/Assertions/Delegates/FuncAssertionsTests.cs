@@ -168,7 +168,7 @@ public static class FuncAssertionsTests
      * Private Methods
      */
 
-    private static int TestFunction(Exception? exception)
+    private static int TestFunction(Exception exception)
     {
         if (exception is null)
             return 1;

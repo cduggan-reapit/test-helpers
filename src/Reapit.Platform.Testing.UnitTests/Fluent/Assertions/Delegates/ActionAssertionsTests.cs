@@ -168,7 +168,7 @@ public static class ActionAssertionsTests
      * Private Methods
      */
 
-    private static void TestAction(Exception? exception)
+    private static void TestAction(Exception exception)
     {
         if (exception is null)
             return;

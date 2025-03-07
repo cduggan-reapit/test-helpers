@@ -11,7 +11,7 @@ public static class StreamExtensions
     /// <summary>Rewinds and reads the contents of a stream, deserializing to <typeparamref name="T"/>.</summary>
     /// <param name="stream">The stream.</param>
     /// <typeparam name="T">The type to deserialize to.</typeparam>
-    public static async Task<T?> RewindAndReadAsJsonAsync<T>(this Stream stream)
+    public static async Task<T> RewindAndReadAsJsonAsync<T>(this Stream stream)
     {
         // Rewind...
         stream.Position = 0;
@@ -25,7 +25,7 @@ public static class StreamExtensions
     
     /// <summary>Rewinds and reads the contents of a stream into a dictionary representing the body of a x-www-form-urlencoded request.</summary>
     /// <param name="stream">The stream.</param>
-    public static async Task<Dictionary<string, StringValues>?> RewindAndReadAsFormAsync(this Stream stream)
+    public static async Task<Dictionary<string, StringValues>> RewindAndReadAsFormAsync(this Stream stream)
     {
         if (stream.Length == 0)
             return null;

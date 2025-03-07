@@ -16,7 +16,7 @@ public abstract class ReferenceTypeAssertions<TSubject, TAssertions>(TSubject su
     protected abstract string Context { get; }
 
     /// <summary>The subject of assertions.</summary>
-    protected TSubject? Subject { get; } = subject;
+    protected TSubject Subject { get; } = subject;
 
     /// <summary>Asserts that the subject is <see langword="null"/>.</summary>
     public AndOperator<TAssertions> BeNull()

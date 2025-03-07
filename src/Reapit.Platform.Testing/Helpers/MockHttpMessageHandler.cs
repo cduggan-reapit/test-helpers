@@ -7,15 +7,15 @@ namespace Reapit.Platform.Testing.Helpers;
 public class MockHttpMessageHandler : HttpMessageHandler
 {
     private readonly HttpStatusCode _statusCode;
-    private readonly string? _response;
+    private readonly string _response;
 
-    public string? LastRequestUrl { get; private set; }
+    public string LastRequestUrl { get; private set; }
     public int RequestCount { get; private set; }
     
     /// <summary>Initializes a new instance of the <see cref="MockHttpMessageHandler"/> class.</summary>
     /// <param name="statusCode">The status code that the handler will return.</param>
     /// <param name="response">The body of the response that the handler will return.</param>
-    public MockHttpMessageHandler(HttpStatusCode statusCode, object? response)
+    public MockHttpMessageHandler(HttpStatusCode statusCode, object response)
     {
         _statusCode = statusCode;
 

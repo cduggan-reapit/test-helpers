@@ -30,7 +30,7 @@ public class ExceptionAssertions<T, TAssertions>
     private const string Context = "exception";
     
     /// <summary>The subject of assertions.</summary>
-    private T? Subject { get; }
+    private T Subject { get; }
 
     /// <summary>Initializes a new instance of the <see cref="ExceptionAssertions{T}"/> class.</summary>
     /// <param name="subject">The nullable assertion subject.</param>
