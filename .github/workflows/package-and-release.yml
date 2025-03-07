@@ -65,6 +65,7 @@ jobs:
         run: npx semantic-release
 
       - name: 🎉 publish to packages
+        if: ${{ false }}
         run: |
           dotnet nuget add source ${{ env.nuget_feed_source }} --name github --store-password-in-clear-text --username reapit --password ${{ secrets.GH_NUGET_WRITE_TOKEN }}
           dotnet pack ${{ env.project_path }} -o ./package/ -c Release

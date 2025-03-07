@@ -7,14 +7,11 @@ plugins:
     - "@semantic-release/changelog"
     - changelogFile: "changelog.md"
   -
-    - "@droidsolutions-oss/semantic-release-update-file"
-    - files:
-        - type: xml
-          path:
-            - "src/Reapit.Platform.Common/Reapit.Platform.Common.csproj"
-          replacements:
-            - key: Version
-              value: ${nextRelease.version}
+    - "semantic-release-replace-plugin"
+    - replacements:
+        - files: "src/Reapit.Platform.Common/Reapit.Platform.Common.csproj"
+          from: "<Version>*.*.*</Version>"
+          to: "<Version>${nextRelease.version}</Version>"
   -
     - "@semantic-release/git"
     - assets:
