@@ -112,5 +112,17 @@ public static class AssertionExtensions
     /// <param name="subject">The subject of the assertions.</param>
     public static NullableNumericAssertions<decimal> Must(this decimal? subject) => new(subject);
     
-    #endregion'
+    #endregion
+
+    #region Temporal Assertions
+
+    /// <summary>Create the assertions object for a <see cref="DateTime"/> object.</summary>
+    /// <param name="subject">The subject of the assertions.</param>
+    public static DateTimeAssertions Must(this DateTime subject) => new(subject);
+    
+    /// <summary>Create the assertions object for a nullable <see cref="DateTime"/> object.</summary>
+    /// <param name="subject">The subject of the assertions.</param>
+    public static NullableDateTimeAssertions Must(this DateTime? subject) => new(subject);
+
+    #endregion
 }
