@@ -9,7 +9,14 @@ public class MockHttpMessageHandler : HttpMessageHandler
     private readonly HttpStatusCode _statusCode;
     private readonly string _response;
 
+    /// <summary>
+    /// The URL of the most recent request received by the message handler.
+    /// </summary>
     public string LastRequestUrl { get; private set; }
+    
+    /// <summary>
+    /// The number of requests received by the message handler.
+    /// </summary>
     public int RequestCount { get; private set; }
     
     /// <summary>Initializes a new instance of the <see cref="MockHttpMessageHandler"/> class.</summary>

@@ -146,7 +146,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .Build();
     }
 
-    /// <summary>Asserts that the subject is greater than the given <see cref="compareTo"/> value.</summary>
+    /// <summary>Asserts that the subject is greater than the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value which the subject must be greater than.</param>
     public AndOperator<TAssertions> BeAfter(DateTimeOffset compareTo)
     {
@@ -160,7 +160,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .Build();
     }
     
-    /// <summary>Asserts that the subject is equal to or greater than the given <see cref="compareTo"/> value.</summary>
+    /// <summary>Asserts that the subject is equal to or greater than the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value which the subject must be equal to or greater than.</param>
     public AndOperator<TAssertions> BeOnOrAfter(DateTimeOffset compareTo)
     {
@@ -174,7 +174,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .Build();
     }
     
-    /// <summary>Asserts that the subject is less than the given <see cref="compareTo"/> value.</summary>
+    /// <summary>Asserts that the subject is less than the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value which the subject must be less than.</param>
     public AndOperator<TAssertions> BeBefore(DateTimeOffset compareTo)
     {
@@ -188,7 +188,7 @@ public class DateTimeOffsetAssertions<TAssertions>
             .Build();
     }
     
-    /// <summary>Asserts that the subject is equal to or less than the given <see cref="compareTo"/> value.</summary>
+    /// <summary>Asserts that the subject is equal to or less than the given <paramref name="compareTo"/> value.</summary>
     /// <param name="compareTo">The value which the subject must be equal to or less than.</param>
     public AndOperator<TAssertions> BeOnOrBefore(DateTimeOffset compareTo)
     {

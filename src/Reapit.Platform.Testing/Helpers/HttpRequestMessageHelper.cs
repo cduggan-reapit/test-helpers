@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
-using Reapit.Platform.Testing.Extensions;
+﻿using Reapit.Platform.Testing.Extensions;
 
 namespace Reapit.Platform.Testing.Helpers;
 
+/// <summary>Extension methods for consistent <see cref="HttpRequestMessage"/> construction using fluent syntax. </summary>
 public static class HttpRequestMessageHelper
 {
     /// <summary>Create a new instance of HttpRequest message.</summary>
