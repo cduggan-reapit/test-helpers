@@ -1,0 +1,56 @@
+name: Package and Release
+on:
+  workflow_run:
+    workflows: 
+      - Build and Test
+    branches:
+      - main
+    types:
+      - completed
+
+env:
+  nuget_feed_source: https://nuget.pkg.github.com/reapit/index.json
+  project_path: ./src/Reapit.Platform.Testing/Reapit.Platform.Testing.csproj
+  HUSKY: 0
+jobs:
+  package-and-release:
+    name: package and release
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+      packages: write
+    steps:
+      # setup the environment
+      - name: 📩 checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚙️ setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: 🕸️ setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: 🔨 install dependencies
+        run: npm ci --include=dev
+
+      - name: ✨ create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
+      - name: 🎉 publish to packages
+        if: ${{ false }}
+        run: |
+          dotnet nuget add source ${{ env.nuget_feed_source }} --name github --store-password-in-clear-text --username reapit --password ${{ secrets.GH_NUGET_WRITE_TOKEN }}
+          dotnet pack ${{ env.project_path }} -o ./package/ -c Release
+          dotnet nuget push ./package/*.nupkg --source ${{ env.nuget_feed_source }} --api-key ${{ secrets.GH_NUGET_WRITE_TOKEN }} --skip-duplicate --no-symbols

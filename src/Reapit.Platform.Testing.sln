@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reapit.Platform.Testing", "Reapit.Platform.Testing\Reapit.Platform.Testing.csproj", "{9F85DBF3-662C-4042-90B2-5030EBAA66FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reapit.Platform.Testing.UnitTests", "Reapit.Platform.Testing.UnitTests\Reapit.Platform.Testing.UnitTests.csproj", "{231062FD-0080-44B3-8EAA-D097E5D0E2C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{9559FE45-B42D-4C6D-9DBD-3219ABA805D4}"
+	ProjectSection(SolutionItems) = preProject
+		..\.commitlintrc.yml = ..\.commitlintrc.yml
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\.releaserc.yml = ..\.releaserc.yml
+		..\changelog.md = ..\changelog.md
+		..\package.json = ..\package.json
+		..\README.md = ..\README.md
+		..\.editorconfig = ..\.editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{3B311EDA-55A9-404C-8F3F-67D9CCE59CDD}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\CODEOWNERS = ..\.github\CODEOWNERS
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{68533BEE-57D2-4340-B430-45938365167F}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build-and-test.yml = ..\.github\workflows\build-and-test.yml
+		..\.github\workflows\commit-linting.yml = ..\.github\workflows\commit-linting.yml
+		..\.github\workflows\package-and-release.yml = ..\.github\workflows\package-and-release.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F85DBF3-662C-4042-90B2-5030EBAA66FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F85DBF3-662C-4042-90B2-5030EBAA66FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F85DBF3-662C-4042-90B2-5030EBAA66FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F85DBF3-662C-4042-90B2-5030EBAA66FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{231062FD-0080-44B3-8EAA-D097E5D0E2C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{231062FD-0080-44B3-8EAA-D097E5D0E2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{231062FD-0080-44B3-8EAA-D097E5D0E2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{231062FD-0080-44B3-8EAA-D097E5D0E2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B311EDA-55A9-404C-8F3F-67D9CCE59CDD} = {9559FE45-B42D-4C6D-9DBD-3219ABA805D4}
+		{68533BEE-57D2-4340-B430-45938365167F} = {3B311EDA-55A9-404C-8F3F-67D9CCE59CDD}
+	EndGlobalSection
+EndGlobal

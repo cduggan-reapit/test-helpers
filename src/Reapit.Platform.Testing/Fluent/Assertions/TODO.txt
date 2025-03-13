@@ -1,0 +1,15 @@
+structs
+✅ Boolean & Nullable Boolean
+✅ Enum & Nullable Enum
+
+delegates
+✅ async func (Task, Task<T>)
+
+reference types
+✅ object (& equivalence)
+✅ Guid
+HttpResponseMessage
+✅ IEnumerable<T>
+✅ IEnumerable<KeyValuePair<TKey,TValue>> (e.g. dict)
+
+

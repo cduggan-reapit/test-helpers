@@ -1,0 +1,32 @@
+name: Build and Test
+on: 
+  - push
+
+env:
+  nuget_feed_source: https://nuget.pkg.github.com/reapit/index.json
+jobs:
+  build-and-test:
+    name: build and test project
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📩 checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: ⚙️ setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+          
+      - name: 🔨 build solution
+        working-directory: src
+        run: |
+          dotnet nuget add source ${{ env.nuget_feed_source }} --name github --store-password-in-clear-text --username reapit --password ${{ secrets.GH_NUGET_ACCESS_TOKEN }}
+          dotnet restore
+          dotnet build --no-restore
+          
+      - name: 🧪 run tests
+        working-directory: src
+        run: |
+          dotnet test --no-build --collect:"XPLat Code Coverage"
