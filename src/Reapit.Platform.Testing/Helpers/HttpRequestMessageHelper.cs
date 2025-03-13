@@ -1,4 +1,5 @@
-﻿using Reapit.Platform.Testing.Extensions;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
+using Reapit.Platform.Testing.Extensions;
 
 namespace Reapit.Platform.Testing.Helpers;
 
@@ -85,5 +86,19 @@ public static class HttpRequestMessageHelper
             request.Content = new FormUrlEncodedContent(content);
 
         return request;
+    }
+
+    /// <summary>Sends an HttpRequest using the given web application factory.</summary>
+    /// <param name="request">The request message object.</param>
+    /// <param name="apiFactory">The factory for bootstrapping an application in memory for functional end-to-end tests.</param>
+    /// <typeparam name="TApiFactory">The factory type.</typeparam>
+    /// <typeparam name="TEntryPoint">A type in the entry point assembly of the application. Typically, the Program class.</typeparam>
+    /// <returns>The response.</returns>
+    public static async Task<HttpResponseMessage> SendAsync<TApiFactory, TEntryPoint>(this HttpRequestMessage request, TApiFactory apiFactory)
+        where TApiFactory : WebApplicationFactory<TEntryPoint>
+        where TEntryPoint : class
+    {
+        using var client = apiFactory.CreateClient();
+        return await client.SendAsync(request);
     }
 }

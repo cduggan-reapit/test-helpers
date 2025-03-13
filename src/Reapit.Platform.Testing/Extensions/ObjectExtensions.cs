@@ -9,7 +9,9 @@ public static class ObjectExtensions
     /// <summary>Convert an object to a <see cref="StringContent"/> for use in HTTP requests.</summary>
     /// <param name="obj">The object to convert.</param>
     public static StringContent ToStringContent(this object obj)
-        => new(obj as string ?? obj.Serialize(), Encoding.UTF8, "application/json");
+        => obj is string str
+            ? new StringContent(str, Encoding.UTF8, "text/plain")
+            : new StringContent(obj.Serialize(), Encoding.UTF8, "application/json");
 
     /// <summary>Get a property from an anonymous object by name.</summary>
     /// <param name="obj">The anonymous object.</param>

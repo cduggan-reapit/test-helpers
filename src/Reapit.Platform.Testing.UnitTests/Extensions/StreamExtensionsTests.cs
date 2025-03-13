@@ -14,7 +14,7 @@ public static class StreamExtensionsTests
             var actual = await stream.RewindAndReadAsJsonAsync<object>();
             Assert.Null(actual);
         }
-        
+
         [Fact]
         public async Task Should_ReturnDictionary_WhenStreamPopulated()
         {
@@ -24,7 +24,7 @@ public static class StreamExtensionsTests
             actual.Must().NotBeNull().And.Match(pd => pd.Status == 200);
         }
     }
-    
+
     public class RewindAndReadAsFormAsync
     {
         [Fact]
@@ -34,12 +34,12 @@ public static class StreamExtensionsTests
             var actual = await stream.RewindAndReadAsFormAsync();
             Assert.Null(actual);
         }
-        
+
         [Fact]
         public async Task Should_ReturnDictionary_WhenStreamPopulated()
         {
             var content = new FormUrlEncodedContent([
-                new KeyValuePair<string, string>("1", "one"), 
+                new KeyValuePair<string, string>("1", "one"),
                 new KeyValuePair<string, string>("2", "two"),
                 new KeyValuePair<string, string>("3", "three")
             ]);
