@@ -9,7 +9,10 @@ on:
       - completed
 
 env:
-  nuget_feed_source: https://nuget.pkg.github.com/reapit/index.json
+  nuget_feed_source: ${{ vars.GBL_PLATFORM_NUGET_FEED_URL }}
+  nuget_access_token: ${{ secrets.GBL_PLATFORM_NUGET_FEED_WRITE_TOKEN  }}
+  release_bot_id: ${{ vars.GBL_PLATFORM_RELEASE_BOT_APP_ID }}
+  release_bot_key: ${{ secrets.GBL_PLATFORM_RELEASE_BOT_PRIVATE_KEY }}
   project_path: ./src/Reapit.Platform.Testing/Reapit.Platform.Testing.csproj
   HUSKY: 0
 jobs:
@@ -24,33 +27,48 @@ jobs:
       id-token: write
       packages: write
     steps:
+      # Get token for the release app
+      - name: 🔐 generate release app token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ env.release_bot_id }}
+          private-key: ${{ env.release_bot_key }}
+      - name: 🪪 get release app user credentials
+        id: get-user-id
+        run: echo "user-id=$(gh api "/users/${{ steps.generate-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+      - name: 👋 configure git user details
+        run: |
+          git config --global user.name '${{ steps.generate-token.outputs.app-slug }}[bot]'
+          git config --global user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.generate-token.outputs.app-slug }}[bot]@users.noreply.github.com>'
+
       # setup the environment
       - name: 📩 checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+          token: ${{ steps.generate-token.outputs.token }}
+          persist-credentials: false
       - name: ⚙️ setup node
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-
       - name: 🕸️ setup dotnet
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-
       - name: 🔨 install dependencies
         run: npm ci --include=dev
 
+      # create and publish the release
       - name: ✨ create release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: npx semantic-release
-
       - name: 🎉 publish to packages
-        if: ${{ false }}
         run: |
-          dotnet nuget add source ${{ env.nuget_feed_source }} --name github --store-password-in-clear-text --username reapit --password ${{ secrets.GH_NUGET_WRITE_TOKEN }}
+          dotnet nuget add source ${{ env.nuget_feed_source }} --name github --store-password-in-clear-text --username reapit --password ${{ env.nuget_access_token }}
           dotnet pack ${{ env.project_path }} -o ./package/ -c Release
-          dotnet nuget push ./package/*.nupkg --source ${{ env.nuget_feed_source }} --api-key ${{ secrets.GH_NUGET_WRITE_TOKEN }} --skip-duplicate --no-symbols
+          dotnet nuget push ./package/*.nupkg --source ${{ env.nuget_feed_source }} --api-key ${{ env.nuget_access_token }} --skip-duplicate --no-symbols

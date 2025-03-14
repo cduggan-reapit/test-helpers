@@ -2,8 +2,10 @@ name: Build and Test
 on: 
   - push
 
-env:
-  nuget_feed_source: https://nuget.pkg.github.com/reapit/index.json
+env: 
+  codacy_project_token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+  nuget_access_token: ${{ secrets.GBL_PLATFORM_NUGET_FEED_READ_TOKEN }}
+  nuget_feed_source: ${{ vars.GBL_PLATFORM_NUGET_FEED_URL }}
 jobs:
   build-and-test:
     name: build and test project
@@ -22,7 +24,7 @@ jobs:
       - name: 🔨 build solution
         working-directory: src
         run: |
-          dotnet nuget add source ${{ env.nuget_feed_source }} --name github --store-password-in-clear-text --username reapit --password ${{ secrets.GH_NUGET_ACCESS_TOKEN }}
+          dotnet nuget add source ${{ env.nuget_feed_source }} --name github --store-password-in-clear-text --username reapit --password ${{ env.nuget_access_token }}
           dotnet restore
           dotnet build --no-restore
           
@@ -30,3 +32,9 @@ jobs:
         working-directory: src
         run: |
           dotnet test --no-build --collect:"XPLat Code Coverage"
+
+      - name: ☁️ upload test results
+        if: github.ref == 'refs/heads/main'
+        run: |
+          export CODACY_PROJECT_TOKEN=${{ env.codacy_project_token }}
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report $(find . -name 'coverage.cobertura.xml' | sed 's,^, -r ,' | xargs echo)
