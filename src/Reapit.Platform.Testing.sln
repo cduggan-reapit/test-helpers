@@ -35,6 +35,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{6818A2EE-B
 	ProjectSection(SolutionItems) = preProject
 		..\docs\fluent.md = ..\docs\fluent.md
 		..\docs\helpers.md = ..\docs\helpers.md
+		..\docs\recipes.md = ..\docs\recipes.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recipes", "Recipes", "{D4B56318-611B-4C19-87ED-8D5E95019EFC}"
+	ProjectSection(SolutionItems) = preProject
+		..\docs\recipes\test-api-factory.md = ..\docs\recipes\test-api-factory.md
+		..\docs\recipes\exception-handler-tests.md = ..\docs\recipes\exception-handler-tests.md
+		..\docs\recipes\data-layer-testing.md = ..\docs\recipes\data-layer-testing.md
 	EndProjectSection
 EndProject
 Global
@@ -59,5 +67,6 @@ Global
 		{3B311EDA-55A9-404C-8F3F-67D9CCE59CDD} = {9559FE45-B42D-4C6D-9DBD-3219ABA805D4}
 		{68533BEE-57D2-4340-B430-45938365167F} = {3B311EDA-55A9-404C-8F3F-67D9CCE59CDD}
 		{6818A2EE-BF8E-4D1D-878B-557F3F8E6B5F} = {9559FE45-B42D-4C6D-9DBD-3219ABA805D4}
+		{D4B56318-611B-4C19-87ED-8D5E95019EFC} = {6818A2EE-BF8E-4D1D-878B-557F3F8E6B5F}
 	EndGlobalSection
 EndGlobal

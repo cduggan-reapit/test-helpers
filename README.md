@@ -6,3 +6,4 @@ A Reapit library designed to make testing easier.
 |-------------------------------------------|
 | [Extensions & Helpers](./docs/helpers.md) |
 | [Fluent Syntax](./docs/fluent.md)         |
+| [Recipes](./docs/recipes.md)              |
