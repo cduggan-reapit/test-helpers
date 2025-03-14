@@ -52,17 +52,17 @@ public class TestDbContextFactory : IDisposable, IAsyncDisposable
 public abstract class RepositoryTestBase : IAsyncLifetime, IDisposable
 {
     private readonly TestDbContextFactory _contextFactory = new();
-    private AccessDbContext? _context;
+    private MyDbContext? _context;
 
     /// <summary>Get the database provider for the current test context.</summary>
     /// <param name="ensureCreated">Flag indicating whether to ensure that the database is created before returning.</param>
-    public AccessDbContext GetContext(bool ensureCreated = true)
+    public MyDbContext GetContext(bool ensureCreated = true)
         => GetContextAsync(ensureCreated).Result;
     
     /// <summary>Get the database provider for the current test context.</summary>
     /// <param name="ensureCreated">Flag indicating whether to ensure that the database is created before returning.</param>
     /// <param name="cancellationToken">The cancellation token</param>
-    public async Task<AccessDbContext> GetContextAsync(bool ensureCreated = true, CancellationToken cancellationToken = default)
+    public async Task<MyDbContext> GetContextAsync(bool ensureCreated = true, CancellationToken cancellationToken = default)
         => _context ??= await _contextFactory.CreateContextAsync(ensureCreated, cancellationToken);
     
     /*
